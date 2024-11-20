@@ -36,4 +36,5 @@ class KelolaProduk extends Model
     {
         return $this->hasMany(PenyewaanJasaTari::class, 'produk_id');
     }
+
 }

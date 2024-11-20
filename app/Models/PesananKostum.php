@@ -19,4 +19,10 @@ public function user()
     return $this->belongsTo(User::class, 'Users_id'); // Ensure Users_id is the foreign key
 }
 
+    // Relasi dari PesananKostum ke Pesanan
+    public function pesanans()
+    {
+        return $this->morphMany(Pesanan::class, 'pesananable');
+    }
+
 }

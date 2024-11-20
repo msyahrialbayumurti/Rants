@@ -11,4 +11,6 @@ abstract class Controller
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
         ],
     ];
+
+    
     }

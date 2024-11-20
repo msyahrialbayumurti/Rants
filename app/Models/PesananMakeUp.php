@@ -18,4 +18,12 @@ class PesananMakeUp extends Model
     {
         return $this->belongsTo(User::class, 'user_id'); // Pastikan user_id adalah foreign key yang benar
     }
+
+        /**
+     * Relasi polymorphic ke model Pesanan
+     */
+    public function pesanans()
+    {
+        return $this->morphMany(Pesanan::class, 'pesananable');
+    }
 }

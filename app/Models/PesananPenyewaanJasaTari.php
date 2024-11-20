@@ -11,4 +11,12 @@ class PesananPenyewaanJasaTari extends Model
     {
         return $this->belongsTo (PenyewaanJasaTari::class);
     }
+
+        /**
+     * Relasi polymorphic ke model Pesanan
+     */
+    public function pesanans()
+    {
+        return $this->morphMany(Pesanan::class, 'pesananable');
+    }
 }
