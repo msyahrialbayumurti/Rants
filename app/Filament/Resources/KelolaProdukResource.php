@@ -3,18 +3,13 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\KelolaProdukResource\Pages;
-use App\Filament\Resources\KelolaProdukResource\RelationManagers;
 use App\Models\KelolaProduk;
-use App\Models\MakeUp;
-use App\Models\Kostum;
-use App\Models\PenyewaanJasaTari;
+use App\Models\Produk;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class KelolaProdukResource extends Resource
 {
@@ -27,12 +22,7 @@ class KelolaProdukResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('image')
-                    ->label('Image')
-                    ->required(),
-                Forms\Components\TextInput::make('harga')
-                    ->label('Harga')
-                    ->required(),
+                // Dropdown untuk memilih tipe produk
                 Forms\Components\Select::make('produk_tipe')
                     ->label('Tipe Produk')
                     ->options([
@@ -40,26 +30,132 @@ class KelolaProdukResource extends Resource
                         'kostum' => 'Kostum',
                         'jasa_tari' => 'Jasa Tari',
                     ])
-                    ->required(),
+                    ->reactive() // Memicu perubahan pada field lain
+                    ->required(fn ($get) => !$get('produk_id')), // Wajib diisi jika produk_id kosong
+
+                // Dropdown untuk memilih produk dari tabel `produks`
+                Forms\Components\Select::make('produk_id')
+                    ->label('Pilih Produk dari Tabel Produk')
+                    ->options(Produk::query()->pluck('nama_produk', 'id')) // Mengambil semua data produk
+                    ->searchable()
+                    ->required(fn ($get) => !$get('produk_tipe')) // Wajib diisi jika produk_tipe kosong
+                    ->helperText('Pilih produk yang sudah ditambahkan dari tabel `produks`.'),
+
+                // Field dinamis untuk makeup
+                Forms\Components\Fieldset::make('Makeup Details')
+                    ->schema([
+                        Forms\Components\FileUpload::make('image')
+                            ->label('Gambar')
+                            ->required(),
+                        Forms\Components\TextInput::make('harga')
+                            ->label('Harga')
+                            ->numeric()
+                            ->required(),
+                    ])
+                    ->visible(fn ($get) => $get('produk_tipe') === 'makeup'),
+
+                // Field dinamis untuk kostum
+                Forms\Components\Fieldset::make('Kostum Details')
+                    ->schema([
+                        Forms\Components\FileUpload::make('image')
+                            ->label('Gambar')
+                            ->required(),
+                        Forms\Components\TextInput::make('nama_kostum')
+                            ->label('Nama Kostum')
+                            ->required(),
+                        Forms\Components\TextInput::make('ukuran')
+                            ->label('Ukuran')
+                            ->required(),
+                        Forms\Components\TextInput::make('warna')
+                            ->label('Warna')
+                            ->required(),
+                        Forms\Components\TextInput::make('jumlah')
+                            ->label('Jumlah')
+                            ->numeric()
+                            ->required(),
+                        Forms\Components\TextInput::make('harga')
+                            ->label('Harga')
+                            ->numeric()
+                            ->required(),
+                    ])
+                    ->visible(fn ($get) => $get('produk_tipe') === 'kostum'),
+
+                // Field dinamis untuk jasa tari
+                Forms\Components\Fieldset::make('Jasa Tari Details')
+                    ->schema([
+                        Forms\Components\FileUpload::make('image')
+                            ->label('Gambar')
+                            ->required(),
+                        Forms\Components\TextInput::make('jumlah_penari')
+                            ->label('Jumlah Penari')
+                            ->numeric()
+                            ->required(),
+                        Forms\Components\TextInput::make('jenis_tarian')
+                            ->label('Jenis Tarian')
+                            ->required(),
+                        Forms\Components\Textarea::make('deskripsi_acara')
+                            ->label('Deskripsi Acara')
+                            ->required(),
+                    ])
+                    ->visible(fn ($get) => $get('produk_tipe') === 'jasa_tari'),
             ]);
     }
+
 
     // Tabel untuk menampilkan data
     public static function table(Table $table): Table
     {
         return $table
             ->columns([
-                Tables\Columns\ImageColumn::make('image')
-                    ->label('Image')
-                    ->size(50),
+                // Kolom Tipe Produk
+                Tables\Columns\TextColumn::make('produk_tipe')
+                    ->label('Tipe Produk')
+                    ->sortable()
+                    ->searchable()
+                    ->getStateUsing(fn ($record) => $record->produk_tipe ?? 'Unknown'), // Fallback jika null
+
+                // Kolom Produk
+                Tables\Columns\TextColumn::make('produk.nama_produk')
+                    ->label('Nama Produk')
+                    ->sortable()
+                    ->searchable(),
+
+                // Kolom Harga
                 Tables\Columns\TextColumn::make('harga')
                     ->label('Harga')
-                    ->sortable(),
-                Tables\Columns\TextColumn::make('produk_tipe')
-                    ->label('Tipe Produk'),
+                    ->visible(fn ($record) => isset($record->produk_tipe) && in_array($record->produk_tipe, ['makeup', 'kostum'])),
+
+                // Kolom Nama Kostum
+                Tables\Columns\TextColumn::make('nama_kostum')
+                    ->label('Nama Kostum')
+                    ->visible(fn ($record) => isset($record->produk_tipe) && $record->produk_tipe === 'kostum'),
+
+                // Kolom Ukuran
+                Tables\Columns\TextColumn::make('ukuran')
+                    ->label('Ukuran')
+                    ->visible(fn ($record) => isset($record->produk_tipe) && $record->produk_tipe === 'kostum'),
+
+                // Kolom Warna
+                Tables\Columns\TextColumn::make('warna')
+                    ->label('Warna')
+                    ->visible(fn ($record) => isset($record->produk_tipe) && $record->produk_tipe === 'kostum'),
+
+                // Kolom Jumlah Penari
+                Tables\Columns\TextColumn::make('jumlah_penari')
+                    ->label('Jumlah Penari')
+                    ->visible(fn ($record) => isset($record->produk_tipe) && $record->produk_tipe === 'jasa_tari'),
+
+                // Kolom Jenis Tarian
+                Tables\Columns\TextColumn::make('jenis_tarian')
+                    ->label('Jenis Tarian')
+                    ->visible(fn ($record) => isset($record->produk_tipe) && $record->produk_tipe === 'jasa_tari'),
+
+                // Kolom Gambar
+                Tables\Columns\ImageColumn::make('image')
+                    ->label('Gambar')
+                    ->size(50),
             ])
             ->filters([
-                // Filter berdasarkan tipe produk (makeup, kostum, atau jasa tari)
                 Tables\Filters\SelectFilter::make('produk_tipe')
                     ->options([
                         'makeup' => 'Makeup',
@@ -71,22 +167,9 @@ class KelolaProdukResource extends Resource
                 Tables\Actions\EditAction::make(),
             ])
             ->bulkActions([
-                Tables\Actions\BulkActionGroup::make([
-                    Tables\Actions\DeleteBulkAction::make(),
-                ]),
+                Tables\Actions\DeleteBulkAction::make(),
             ]);
     }
-
-    // // Relasi yang akan ditampilkan berdasarkan tipe produk
-    // public static function getRelations(): array
-    // {
-    //     return [
-    //         // Tampilkan relasi sesuai dengan tipe produk
-    //         RelationManagers\PesananMakeUpRelationManager::class, // Relasi pesanan makeup
-    //         RelationManagers\PesananKostumRelationManager::class, // Relasi pesanan kostum
-    //         RelationManagers\PesananTarianRelationManager::class, // Relasi pesanan jasa tari
-    //     ];
-    // }
 
     // Halaman untuk resource
     public static function getPages(): array
