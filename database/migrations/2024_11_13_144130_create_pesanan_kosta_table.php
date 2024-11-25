@@ -14,15 +14,15 @@ return new class extends Migration
         Schema::create('pesanan_kosta', function (Blueprint $table) {
             $table->id();
             $table->foreignId('kosta_id')->constrained('kosta')->onDelete('cascade');
-            $table->foreignId('Users_id')->constrained('Users')->onDelete('cascade');
+            $table->foreignId('user_id')->constrained('users')->onDelete('cascade'); // Nama kolom diperbaiki
             $table->string('nama_kostum');
             $table->string('ukuran');
             $table->string('warna');
             $table->integer('jumlah');
             $table->dateTime('waktu_pemakaian_mulai');
             $table->dateTime('waktu_pemakaian_selesai');
-            $table->string('image');
-            $table->double('harga');
+            $table->string('image')->nullable(); // Kolom nullable
+            $table->double('harga'); // Tidak menambahkan presisi
             $table->enum('status_pesanan', ['pending', 'diproses', 'selesai', 'dibatalkan'])->default('pending');
             $table->timestamps();
         });
