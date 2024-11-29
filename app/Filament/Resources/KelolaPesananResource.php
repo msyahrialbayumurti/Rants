@@ -20,6 +20,12 @@ protected static ?string $model = Pesanan::class; // Menggunakan model Pesanan
 protected static ?string $navigationIcon = 'heroicon-o-shopping-cart';
 protected static ?string $navigationGroup = 'Manajemen Pesanan';
 
+public static function getNavigationLabel(): string
+{
+    return 'Pesanan';
+}
+
+
 public static function table(Tables\Table $table): Tables\Table
 {
 return $table

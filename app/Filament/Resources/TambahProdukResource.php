@@ -16,7 +16,7 @@ class TambahProdukResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-plus-circle';
 
-    protected static ?string $navigationLabel = 'Tambah Produk';
+    protected static ?string $navigationLabel = 'Tambah Jasa';
 
     public static function form(FormsForm $form): FormsForm
     {

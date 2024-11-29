@@ -17,6 +17,12 @@ class KelolaProdukResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
+    public static function getNavigationLabel(): string
+{
+    return 'Kelola Layanan';
+}
+
+
     // Form untuk input/edit data
     public static function form(Form $form): Form
     {
