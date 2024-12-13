@@ -13,11 +13,8 @@ class PesananPenyewaanJasaTari extends Model
         protected $fillable = [
             'penyewaan_jasa_taris_id',
             'Users_id',
-            'jumlah_penari',
             'tanggal',
-            'jenis_tarian',
             'jam_pemakaian',
-            'deskripsi_acara',
             'lokasi',
             'alamat',
             'latitude',

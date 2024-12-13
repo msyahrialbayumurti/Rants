@@ -1,43 +1,91 @@
 <?php
 
-namespace App\Http\Resources;
+namespace App\Filament\Resources;
 
-use Illuminate\Http\Resources\Json\JsonResource;
+use App\Models\PesananPenyewaanJasaTari;
+use Filament\Forms;
+use Filament\Resources\Resource;
+use Filament\Tables;
+use Filament\Tables\Table;
+use Filament\Forms\Form;
+use Filament\Forms\Components\TextInput;
+use Filament\Forms\Components\DatePicker;
+use Filament\Forms\Components\FileUpload;
+use Filament\Forms\Components\Textarea;
+use Filament\Forms\Components\Select;
+use Filament\Tables\Filters\SelectFilter;
+use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Columns\ImageColumn;
+use App\Filament\Resources\PesananPenyewaanJasaTariResource\Pages;
 
-class PesananPenyewaanJasaTariResource extends JsonResource
+class PesananPenyewaanJasaTariResource extends Resource
 {
+    protected static ?string $model = PesananPenyewaanJasaTari::class;
 
-    // protected static ?string $model = Pesanan::class; // Menggunakan model Pesanan
+    protected static ?string $navigationIcon = 'heroicon-o-user-group'; // Ikon menu
+    protected static ?string $navigationGroup = 'Manajemen Pesanan'; // Grup menu
+    protected static ?string $navigationLabel = 'Pesanan Penyewaan Jasa Tari'; // Nama menu
 
-protected static ?string $navigationIcon = 'heroicon-o-shopping-cart';
-protected static ?string $navigationGroup = 'Manajemen Pesanan';
-    /**
-     * Mengubah resource menjadi array.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return array
-     */
-    public function toArray($request)
+    // Menampilkan tabel data
+    public static function table(Table $table): Table
+    {
+        return $table
+            ->columns([
+                TextColumn::make('id')->label('ID')->sortable(),
+                TextColumn::make('user.name')->label('Nama User')->sortable(),
+                TextColumn::make('jumlah_penari')->label('Jumlah Penari')->sortable(),
+                TextColumn::make('tanggal')->label('Tanggal Pemesanan')->dateTime(),
+                TextColumn::make('jenis_tarian')->label('Jenis Tarian')->sortable(),
+                TextColumn::make('jam_pemakaian')->label('Jam Pemakaian')->sortable(),
+                TextColumn::make('total_harga')->label('Total Harga')->money('IDR'),
+                TextColumn::make('status_pesanan')->label('Status Pesanan')->sortable(),
+            ])
+            ->filters([
+                SelectFilter::make('status_pesanan')
+                    ->options([
+                        'pending' => 'Pending',
+                        'diproses' => 'Diproses',
+                        'selesai' => 'Selesai',
+                        'dibatalkan' => 'Dibatalkan',
+                    ])
+                    ->label('Status Pesanan'),
+            ]);
+    }
+
+    // Form untuk input data
+    public static function form(Form $form): Form
+    {
+        return $form
+            ->schema([
+                TextInput::make('jumlah_penari')->label('Jumlah Penari')->numeric()->required(),
+                DatePicker::make('tanggal')->label('Tanggal Pemesanan')->required(),
+                TextInput::make('jenis_tarian')->label('Jenis Tarian')->required(),
+                TextInput::make('jam_pemakaian')->label('Jam Pemakaian')->numeric()->required(),
+                Textarea::make('deskripsi_acara')->label('Deskripsi Acara')->required(),
+                TextInput::make('lokasi')->label('Lokasi')->required(),
+                TextInput::make('alamat')->label('Alamat')->required(),
+                TextInput::make('latitude')->label('Latitude')->numeric()->required(),
+                TextInput::make('longitude')->label('Longitude')->numeric()->required(),
+                TextInput::make('total_harga')->label('Total Harga')->numeric()->required(),
+                Select::make('status_pesanan')
+                    ->options([
+                        'pending' => 'Pending',
+                        'diproses' => 'Diproses',
+                        'selesai' => 'Selesai',
+                        'dibatalkan' => 'Dibatalkan',
+                    ])
+                    ->label('Status Pesanan')
+                    ->required(),
+            ]);
+    }
+
+    // Halaman-halaman untuk resource ini
+    public static function getPages(): array
     {
         return [
-            'id' => $this->id,
-            'penyewaan_jasa_taris_id' => $this->penyewaan_jasa_taris_id,
-            'user_id' => $this->Users_id,
-            'jumlah_penari' => $this->jumlah_penari,
-            'tanggal' => $this->tanggal,
-            'jenis_tarian' => $this->jenis_tarian,
-            'jam_pemakaian' => $this->jam_pemakaian,
-            'deskripsi_acara' => $this->deskripsi_acara,
-            'lokasi' => $this->lokasi,
-            'alamat' => $this->alamat,
-            'latitude' => $this->latitude,
-            'longitude' => $this->longitude,
-            'total_harga' => $this->total_harga,
-            'status_pesanan' => $this->status_pesanan,
-            'created_at' => $this->created_at,
-            'updated_at' => $this->updated_at,
-            'penyewaan_jasa_taris' => new PenyewaanJasaTarisResource($this->whenLoaded('penyewaanJasaTaris')),
-            'user' => new UserResource($this->whenLoaded('user')),
+            'index' => Pages\ListPesananPenyewaanJasaTaris::route('/'),
+            'create' => Pages\CreatePesananPenyewaanJasaTari::route('/create'),
+            'edit' => Pages\EditPesananPenyewaanJasaTari::route('/{record}/edit'),
         ];
     }
 }

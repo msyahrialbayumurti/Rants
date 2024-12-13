@@ -15,13 +15,9 @@ return new class extends Migration
             $table->id();
             $table->foreignId('kosta_id')->constrained('kosta')->onDelete('cascade');
             $table->foreignId('Users_id')->constrained('Users')->onDelete('cascade');
-            $table->string('nama_kostum');
-            $table->string('image');
-            $table->string('ukuran');
-            $table->integer('jumlah');
             $table->dateTime('waktu_pemakaian_mulai');
             $table->dateTime('waktu_pemakaian_selesai');
-            $table->double('harga');
+            $table->double('total_harga');
             $table->enum('status_pesanan', ['pending', 'diproses', 'selesai', 'dibatalkan'])->default('pending');
             $table->timestamps();
         });

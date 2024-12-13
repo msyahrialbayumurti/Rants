@@ -19,7 +19,6 @@ class PesananMakeUp extends Model
         'alamat',
         'latitude',
         'longitude',
-        'image',
         'total_harga',
         'status_pesanan',
     ];
