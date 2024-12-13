@@ -37,4 +37,10 @@ class KelolaProduk extends Model
         return $this->hasMany(PenyewaanJasaTari::class, 'produk_id');
     }
 
+    public function produk()
+{
+    return $this->belongsTo(Produk::class);
+}
+
+
 }

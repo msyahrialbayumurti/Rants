@@ -7,12 +7,12 @@ use Illuminate\Http\Request;
 
 class CalendarController extends Controller
 {
-    public function index()
+    public function schedule($tanggal)
     {
-        // Mengambil semua data dari tabel calendars
-        $calendars = Calendar::all();
+        $calendars = Calendar::all()->where("date", $tanggal);
 
         // Mengembalikan dalam format JSON
-        return response()->json($calendars);
+        return response()->json(
+            $calendars, 200);
     }
 }

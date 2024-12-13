@@ -10,6 +10,7 @@ use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
+use Filament\Notifications\Notification;
 
 class KelolaProdukResource extends Resource
 {
@@ -18,10 +19,9 @@ class KelolaProdukResource extends Resource
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
     public static function getNavigationLabel(): string
-{
-    return 'Kelola Layanan';
-}
-
+    {
+        return 'Kelola Layanan';
+    }
 
     // Form untuk input/edit data
     public static function form(Form $form): Form
@@ -37,26 +37,33 @@ class KelolaProdukResource extends Resource
                         'jasa_tari' => 'Jasa Tari',
                     ])
                     ->reactive() // Memicu perubahan pada field lain
-                    ->required(fn ($get) => !$get('produk_id')), // Wajib diisi jika produk_id kosong
+                    // ->required(fn ($get) => !$get('produk_id')) // Wajib diisi jika produk_id kosong
+                    ->helperText('Pilih tipe produk sesuai dengan kategori.')
+                    ->dehydrateStateUsing(fn ($state) => $state ?: null), // Mencegah notifikasi error
 
-                // Dropdown untuk memilih produk dari tabel `produks`
+                // Dropdown untuk memilih produk dari tabel produks
                 Forms\Components\Select::make('produk_id')
                     ->label('Pilih Produk dari Tabel Produk')
                     ->options(Produk::query()->pluck('nama_produk', 'id')) // Mengambil semua data produk
                     ->searchable()
                     ->required(fn ($get) => !$get('produk_tipe')) // Wajib diisi jika produk_tipe kosong
-                    ->helperText('Pilih produk yang sudah ditambahkan dari tabel `produks`.'),
+                    ->helperText('Pilih produk yang sudah ditambahkan dari tabel produks.')
+                    ->dehydrateStateUsing(fn ($state) => $state ?: null), // Mencegah notifikasi error
 
                 // Field dinamis untuk makeup
                 Forms\Components\Fieldset::make('Makeup Details')
                     ->schema([
                         Forms\Components\FileUpload::make('image')
                             ->label('Gambar')
-                            ->required(),
+                            ->required()
+                            ->helperText('Upload gambar produk makeup.')
+                            ->dehydrateStateUsing(fn ($state) => $state ?: null), // Mencegah notifikasi error
                         Forms\Components\TextInput::make('harga')
                             ->label('Harga')
                             ->numeric()
-                            ->required(),
+                            ->required()
+                            ->helperText('Masukkan harga produk makeup.')
+                            ->dehydrateStateUsing(fn ($state) => $state ?: null), // Mencegah notifikasi error
                     ])
                     ->visible(fn ($get) => $get('produk_tipe') === 'makeup'),
 
@@ -65,24 +72,36 @@ class KelolaProdukResource extends Resource
                     ->schema([
                         Forms\Components\FileUpload::make('image')
                             ->label('Gambar')
-                            ->required(),
+                            ->required()
+                            ->helperText('Upload gambar produk kostum.')
+                            ->dehydrateStateUsing(fn ($state) => $state ?: null), // Mencegah notifikasi error
                         Forms\Components\TextInput::make('nama_kostum')
                             ->label('Nama Kostum')
-                            ->required(),
+                            ->required()
+                            ->helperText('Masukkan nama kostum.')
+                            ->dehydrateStateUsing(fn ($state) => $state ?: null),
                         Forms\Components\TextInput::make('ukuran')
                             ->label('Ukuran')
-                            ->required(),
+                            ->required()
+                            ->helperText('Masukkan ukuran kostum.')
+                            ->dehydrateStateUsing(fn ($state) => $state ?: null),
                         Forms\Components\TextInput::make('warna')
                             ->label('Warna')
-                            ->required(),
+                            ->required()
+                            ->helperText('Masukkan warna kostum.')
+                            ->dehydrateStateUsing(fn ($state) => $state ?: null),
                         Forms\Components\TextInput::make('jumlah')
                             ->label('Jumlah')
                             ->numeric()
-                            ->required(),
+                            ->required()
+                            ->helperText('Masukkan jumlah kostum.')
+                            ->dehydrateStateUsing(fn ($state) => $state ?: null),
                         Forms\Components\TextInput::make('harga')
                             ->label('Harga')
                             ->numeric()
-                            ->required(),
+                            ->required()
+                            ->helperText('Masukkan harga kostum.')
+                            ->dehydrateStateUsing(fn ($state) => $state ?: null),
                     ])
                     ->visible(fn ($get) => $get('produk_tipe') === 'kostum'),
 
@@ -91,22 +110,29 @@ class KelolaProdukResource extends Resource
                     ->schema([
                         Forms\Components\FileUpload::make('image')
                             ->label('Gambar')
-                            ->required(),
+                            ->required()
+                            ->helperText('Upload gambar produk jasa tari.')
+                            ->dehydrateStateUsing(fn ($state) => $state ?: null), // Mencegah notifikasi error
                         Forms\Components\TextInput::make('jumlah_penari')
                             ->label('Jumlah Penari')
                             ->numeric()
-                            ->required(),
+                            ->required()
+                            ->helperText('Masukkan jumlah penari.')
+                            ->dehydrateStateUsing(fn ($state) => $state ?: null),
                         Forms\Components\TextInput::make('jenis_tarian')
                             ->label('Jenis Tarian')
-                            ->required(),
+                            ->required()
+                            ->helperText('Masukkan jenis tarian.')
+                            ->dehydrateStateUsing(fn ($state) => $state ?: null),
                         Forms\Components\Textarea::make('deskripsi_acara')
                             ->label('Deskripsi Acara')
-                            ->required(),
+                            ->required()
+                            ->helperText('Masukkan deskripsi acara.')
+                            ->dehydrateStateUsing(fn ($state) => $state ?: null),
                     ])
                     ->visible(fn ($get) => $get('produk_tipe') === 'jasa_tari'),
             ]);
     }
-
 
     // Tabel untuk menampilkan data
     public static function table(Table $table): Table

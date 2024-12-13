@@ -1,10 +1,14 @@
 <?php
 
+use App\Http\Controllers\CalendarController;
+use App\Http\Controllers\GalleryController; 
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Route;
 
+
+// login
 Route::post('/login', function (Request $request) {
     $request->validate([
         'email' => 'required|email',
@@ -31,3 +35,9 @@ Route::post('/login', function (Request $request) {
         ],
     ]);
 });
+
+// jadwal
+route::get('/acara/{tanngal}',[CalendarController::class, 'schedule' ]);
+
+// get gallery
+Route::get('galleries/', [GalleryController::class, 'index']);
