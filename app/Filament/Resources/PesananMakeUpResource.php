@@ -1,35 +1,83 @@
 <?php
 
-namespace App\Http\Resources;
+namespace App\Filament\Resources;
 
-use Illuminate\Http\Resources\Json\JsonResource;
+use App\Models\PesananMakeUp;
+use Filament\Forms;
+use Filament\Resources\Resource;
+use Filament\Tables;
+use Filament\Tables\Table;
+use Filament\Forms\Form;
+use Filament\Tables\Filters\SelectFilter;
+use Filament\Forms\Components\TextInput;
+use Filament\Forms\Components\DatePicker;
+use Filament\Forms\Components\FileUpload;
+use Filament\Forms\Components\Select;
+use App\Filament\Resources\PesananMakeUpResource\Pages;
 
-class PesananMakeUpResource extends JsonResource
+class PesananMakeUpResource extends Resource
 {
-    /**
-     * Mengubah resource menjadi array.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return array
-     */
-    public function toArray($request)
+    protected static ?string $model = PesananMakeUp::class;
+
+    protected static ?string $navigationIcon = 'heroicon-o-user-group'; // Icon untuk menu
+    protected static ?string $navigationGroup = 'Manajemen Pesanan'; // Grup menu
+    protected static ?string $navigationLabel = 'Pesanan Makeup'; // Nama menu
+
+    // Menampilkan tabel data
+    public static function table(Table $table): Table
+    {
+        return $table
+            ->columns([
+                Tables\Columns\TextColumn::make('id')->label('ID')->sortable(),
+                Tables\Columns\TextColumn::make('user.name')->label('Nama User')->sortable(),
+                Tables\Columns\TextColumn::make('tanggal_pesanan')->label('Tanggal Pesanan')->dateTime(),
+                Tables\Columns\TextColumn::make('lokasi_pemesanan')->label('Lokasi Pemesanan'),
+                Tables\Columns\TextColumn::make('total_harga')->label('Total Harga')->money('IDR'),
+                Tables\Columns\TextColumn::make('status_pesanan')->label('Status Pesanan')->sortable(),
+            ])
+            ->filters([
+                SelectFilter::make('status_pesanan')
+                    ->options([
+                        'pending' => 'Pending',
+                        'diproses' => 'Diproses',
+                        'selesai' => 'Selesai',
+                        'dibatalkan' => 'Dibatalkan',
+                    ])
+                    ->label('Status'),
+            ]);
+    }
+
+    // Form untuk input data
+    public static function form(Form $form): Form
+    {
+        return $form
+            ->schema([
+                DatePicker::make('tanggal_pesanan')->label('Tanggal Pesanan')->required(),
+                TextInput::make('lokasi_pemesanan')->label('Lokasi Pemesanan')->required(),
+                TextInput::make('alamat')->label('Alamat')->required(),
+                TextInput::make('latitude')->label('Latitude')->numeric()->required(),
+                TextInput::make('longitude')->label('Longitude')->numeric()->required(),
+                FileUpload::make('image')->label('Gambar')->image()->required(),
+                TextInput::make('total_harga')->label('Total Harga')->numeric()->required(),
+                Select::make('status_pesanan')
+                    ->options([
+                        'pending' => 'Pending',
+                        'diproses' => 'Diproses',
+                        'selesai' => 'Selesai',
+                        'dibatalkan' => 'Dibatalkan',
+                    ])
+                    ->label('Status Pesanan')
+                    ->required(),
+            ]);
+    }
+
+    // Halaman-halaman untuk resource
+    public static function getPages(): array
     {
         return [
-            'id' => $this->id,
-            'make_ups_id' => $this->make_ups_id,
-            'user_id' => $this->Users_id,
-            'tanggal_pesanan' => $this->tanggal_pesanan,
-            'lokasi_pemesanan' => $this->lokasi_pemesanan,
-            'alamat' => $this->alamat,
-            'latitude' => $this->latitude,
-            'longitude' => $this->longitude,
-            'image' => $this->image,
-            'total_harga' => $this->total_harga,
-            'status_pesanan' => $this->status_pesanan,
-            'created_at' => $this->created_at,
-            'updated_at' => $this->updated_at,
-            'make_up' => new MakeUpResource($this->whenLoaded('makeUp')),
-            'user' => new UserResource($this->whenLoaded('user')),
+            'index' => Pages\ListPesananMakeUps::route('/'),
+            'create' => Pages\CreatePesananMakeUp::route('/create'),
+            'edit' => Pages\EditPesananMakeUp::route('/{record}/edit'),
         ];
     }
 }

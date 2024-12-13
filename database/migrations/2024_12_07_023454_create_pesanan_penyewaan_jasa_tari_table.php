@@ -15,12 +15,8 @@ return new class extends Migration
             $table->id();
             $table->foreignId('penyewaan_jasa_taris_id')->constrained('penyewaan_jasa_taris')->onDelete('cascade');
             $table->foreignId('Users_id')->constrained('Users')->onDelete('cascade');
-            $table->integer('jumlah_penari');
             $table->date('tanggal');
-            $table->string('jenis_tarian');
             $table->integer('jam_pemakaian');
-            $table->string('deskripsi_acara');
-            $table->string('lokasi'); // Nama lokasi
             $table->string('alamat');
             $table->decimal('latitude', 10, 8);
             $table->decimal('longitude', 11, 8);
