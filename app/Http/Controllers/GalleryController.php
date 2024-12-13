@@ -21,7 +21,6 @@ class GalleryController extends Controller
     public function show($id)
     {
         $gallery = Gallery::find($id);
-        
         if ($gallery) {
             return response()->json([
                 'status' => 'success',
