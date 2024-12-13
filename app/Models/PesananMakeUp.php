@@ -7,6 +7,22 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class PesananMakeUp extends Model
 {
+
+
+
+       // Atribut yang dapat diisi melalui mass assignment
+    protected $fillable = [
+        'make_ups_id',
+        'Users_id',
+        'tanggal_pesanan',
+        'lokasi_pemesanan',
+        'alamat',
+        'latitude',
+        'longitude',
+        'image',
+        'total_harga',
+        'status_pesanan',
+    ];
     // Relasi ke model MakeUp
     public function makeup(): BelongsTo
     {
@@ -19,11 +35,4 @@ class PesananMakeUp extends Model
         return $this->belongsTo(User::class, 'user_id'); // Pastikan user_id adalah foreign key yang benar
     }
 
-        /**
-     * Relasi polymorphic ke model Pesanan
-     */
-    public function pesanans()
-    {
-        return $this->morphMany(Pesanan::class, 'pesananable');
-    }
 }
