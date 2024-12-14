@@ -30,6 +30,7 @@ class PesananMakeUpResource extends Resource
             ->columns([
                 Tables\Columns\TextColumn::make('id')->label('ID')->sortable(),
                 Tables\Columns\TextColumn::make('user.name')->label('Nama User')->sortable(),
+                Tables\Columns\TextColumn::make('make_ups.kategory')->label('Kategory')->sortable(),
                 Tables\Columns\TextColumn::make('tanggal_pesanan')->label('Tanggal Pesanan')->dateTime(),
                 Tables\Columns\TextColumn::make('lokasi_pemesanan')->label('Lokasi Pemesanan'),
                 Tables\Columns\TextColumn::make('total_harga')->label('Total Harga')->money('IDR'),
@@ -54,11 +55,10 @@ class PesananMakeUpResource extends Resource
             ->schema([
                 DatePicker::make('tanggal_pesanan')->label('Tanggal Pesanan')->required(),
                 TextInput::make('lokasi_pemesanan')->label('Lokasi Pemesanan')->required(),
-                TextInput::make('alamat')->label('Alamat')->required(),
                 TextInput::make('latitude')->label('Latitude')->numeric()->required(),
                 TextInput::make('longitude')->label('Longitude')->numeric()->required(),
-                FileUpload::make('image')->label('Gambar')->image()->required(),
                 TextInput::make('total_harga')->label('Total Harga')->numeric()->required(),
+
                 Select::make('status_pesanan')
                     ->options([
                         'pending' => 'Pending',

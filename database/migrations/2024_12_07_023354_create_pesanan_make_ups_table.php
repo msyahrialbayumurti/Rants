@@ -17,7 +17,6 @@ return new class extends Migration
             $table->foreignId('Users_id')->constrained('Users')->onDelete('cascade');
             $table->date('tanggal_pesanan');
             $table->string('lokasi_pemesanan');
-            $table->string('alamat');
             $table->decimal('latitude', 10, 8);
             $table->decimal('longitude', 11, 8);
             $table->double('total_harga');

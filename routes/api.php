@@ -9,6 +9,10 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\KostumController;
 use App\Http\Controllers\MakeUpController;
 use App\Http\Controllers\PenyewaanJasaTariController;
+use App\Http\Controllers\PesananKostumController;
+use App\Http\Controllers\PesananMakeUpController;
+use App\Http\Controllers\PesananPenyewaanJasaTariController;
+
 // login
 Route::post('/login', function (Request $request) {
     $request->validate([
@@ -70,3 +74,15 @@ Route::prefix('penyewaan-jasa-tari')->group(function () {
     // Route::put('/{id}', [PenyewaanJasaTariController::class, 'update']); // Mengupdate data
     // Route::delete('/{id}', [PenyewaanJasaTariController::class, 'destroy']); // Menghapus data
 });
+
+//PesananKostum
+Route::get('pesanan-kostum', [PesananKostumController::class, 'index']);
+Route::get('pesanan-kostum/{id}', [PesananKostumController::class, 'show']);
+
+//PesananMakeUp
+Route::get('pesanan-makeup', [PesananKostumController::class, 'index']);
+Route::get('pesanan-makeup/{id}', [PesananKostumController::class, 'show']);
+
+//PesananPenyewaanJasaTari
+Route::get('pesanan-penyewaanjasatari', [PesananPenyewaanJasaTariController::class, 'index']);
+Route::get('pesanan-penyewaanjasatari/{id}', [PesananPenyewaanJasaTariController::class, 'show']);

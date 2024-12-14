@@ -33,6 +33,7 @@ class PesananPenyewaanJasaTariResource extends Resource
             ->columns([
                 TextColumn::make('id')->label('ID')->sortable(),
                 TextColumn::make('user.name')->label('Nama User')->sortable(),
+                TextColumn::make('penyewaan_jasa_tari_id')->label('Nama Produk')->sortable(),
                 TextColumn::make('jumlah_penari')->label('Jumlah Penari')->sortable(),
                 TextColumn::make('tanggal')->label('Tanggal Pemesanan')->dateTime(),
                 TextColumn::make('jenis_tarian')->label('Jenis Tarian')->sortable(),
@@ -57,16 +58,11 @@ class PesananPenyewaanJasaTariResource extends Resource
     {
         return $form
             ->schema([
-                TextInput::make('jumlah_penari')->label('Jumlah Penari')->numeric()->required(),
                 DatePicker::make('tanggal')->label('Tanggal Pemesanan')->required(),
-                TextInput::make('jenis_tarian')->label('Jenis Tarian')->required(),
                 TextInput::make('jam_pemakaian')->label('Jam Pemakaian')->numeric()->required(),
-                Textarea::make('deskripsi_acara')->label('Deskripsi Acara')->required(),
                 TextInput::make('lokasi')->label('Lokasi')->required(),
-                TextInput::make('alamat')->label('Alamat')->required(),
                 TextInput::make('latitude')->label('Latitude')->numeric()->required(),
                 TextInput::make('longitude')->label('Longitude')->numeric()->required(),
-                TextInput::make('total_harga')->label('Total Harga')->numeric()->required(),
                 Select::make('status_pesanan')
                     ->options([
                         'pending' => 'Pending',
