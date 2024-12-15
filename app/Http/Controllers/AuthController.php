@@ -3,10 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use App\Models\User;
-use App\Http\Controllers\respons;
 
 class AuthController extends Controller
 {
@@ -17,14 +15,14 @@ class AuthController extends Controller
     {
         // Validasi input
         $request->validate([
-            'email' => 'required|email|max:255',
-            'password' => 'required|min:6|max:255',
+            'email' => 'required|email',
+            'password' => 'required',
         ]);
 
         // Cari user berdasarkan email
         $user = User::where('email', $request->email)->first();
 
-        // Periksa user dan password
+        // Periksa password
         if (!$user || !Hash::check($request->password, $user->password)) {
             return response()->json([
                 'status' => 'error',
@@ -32,7 +30,7 @@ class AuthController extends Controller
             ], 401);
         }
 
-        // Buat token
+        // Buat token menggunakan Sanctum
         $token = $user->createToken('API Token')->plainTextToken;
 
         return response()->json([
@@ -41,7 +39,7 @@ class AuthController extends Controller
             'data' => [
                 'user' => $user,
                 'token' => $token,
-            ]
+            ],
         ]);
     }
 
@@ -50,7 +48,6 @@ class AuthController extends Controller
      */
     public function logout(Request $request)
     {
-        // Hapus semua token untuk user yang login
         $request->user()->tokens()->delete();
 
         return response()->json([
@@ -66,7 +63,6 @@ class AuthController extends Controller
     {
         return response()->json([
             'status' => 'success',
-            'message' => 'Data user berhasil diambil',
             'data' => $request->user(),
         ]);
     }

@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Auth;  // Pastikan ini ada
+use Illuminate\Validation\ValidationException;
 
 class RegisterController extends Controller
 {
@@ -15,26 +15,51 @@ class RegisterController extends Controller
      */
     public function register(Request $request)
     {
-        // Validasi input dari form
-        $request->validate([
-            'name' => 'required|string|max:255',            // Nama wajib diisi
-            'email' => 'required|string|email|max:255|unique:users',  // Email wajib dan unik
-            'nohp' => 'required|string|max:15',              // Nomor HP wajib diisi
-            'password' => 'required|string|min:8|confirmed',  // Password wajib, minimal 8 karakter dan konfirmasi password
-        ]);
+        try {
+            // Validasi input dari form
+            $validatedData = $request->validate([
+                'name' => 'required|string|max:255',            // Nama wajib diisi
+                'email' => 'required|string|email|max:255|unique:users',  // Email wajib dan unik
+                'nohp' => 'required|string|max:15',              // Nomor HP wajib diisi
+                'password' => 'required|string|min:6|confirmed',  // Password wajib, minimal 6 karakter, dan konfirmasi
+            ]);
 
-        // Membuat user baru
-        $user = User::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'nohp' => $request->nohp,
-            'password' => Hash::make($request->password),  // Menggunakan Hash untuk mengenkripsi password
-        ]);
+            // Membuat user baru
+            $user = User::create([
+                'name' => $validatedData['name'],
+                'email' => $validatedData['email'],
+                'nohp' => $validatedData['nohp'],
+                'password' => Hash::make($validatedData['password']),  // Enkripsi password
+            ]);
 
-        // Melakukan login otomatis setelah registrasi (optional)
-        Auth::login($user); // Menggunakan Auth::login
+            // Buat token Sanctum
+            $token = $user->createToken('API Token')->plainTextToken;
 
-        // Redirect ke halaman setelah registrasi sukses (misalnya ke halaman dashboard)
-        return redirect()->route('dashboard');
+            // Response JSON jika registrasi berhasil
+            return response()->json([
+                'status' => 'success',
+                'message' => 'Registrasi berhasil',
+                'data' => [
+                    'user' => $user,
+                    'token' => $token,
+                ],
+            ], 201); // 201 Created
+
+        } catch (ValidationException $e) {
+            // Respons jika validasi gagal
+            return response()->json([
+                'status' => 'error',
+                'message' => 'Validasi gagal',
+                'errors' => $e->errors(), // Menampilkan detail error dari validasi
+            ], 422); // 422 Unprocessable Entity
+
+        } catch (\Exception $e) {
+            // Respons jika terjadi error server
+            return response()->json([
+                'status' => 'error',
+                'message' => 'Terjadi kesalahan pada server',
+                'error' => $e->getMessage(), // Pesan error untuk debugging
+            ], 500); // 500 Internal Server Error
+        }
     }
 }
