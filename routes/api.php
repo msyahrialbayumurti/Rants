@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CalendarController;
 use App\Http\Controllers\GalleryController; 
 use Illuminate\Http\Request;
@@ -37,6 +39,9 @@ Route::post('/login', function (Request $request) {
     ]);
 });
 
+// Route::post('/login', [AuthController::class, 'login']);
+// Route::post('/register', [RegisterController::class, 'register']);
+
 // jadwal
 route::get('/acara/{tanngal}',[CalendarController::class, 'schedule' ]);
 
@@ -44,10 +49,10 @@ route::get('/acara/{tanngal}',[CalendarController::class, 'schedule' ]);
 Route::get('galleries/',[GalleryController::class,'index']);
 
 //Kostum
-Route::prefix('api')->group(function () {
-    Route::get('/kostum/', [KostumController::class, 'index']); // Mendapatkan semua kostum
+Route::prefix('kostum')->group(function () {
+    Route::get('/all', [KostumController::class, 'index']); // Mendapatkan semua kostum
 //     Route::post('/', [KostumController::class, 'store']); // Menambahkan kostum
-//     Route::get('/{id}', [KostumController::class, 'show']); // Mendapatkan detail kostum
+    Route::get('/{id}', [KostumController::class, 'show']); // Mendapatkan detail kostum
 //     Route::put('/{id}', [KostumController::class, 'update']); // Mengupdate kostum
 //     Route::delete('/{id}', [KostumController::class, 'destroy']); // Menghapus kostum
 });
@@ -63,7 +68,7 @@ Route::prefix('makeup')->group(function () {
 });
 
 //PenyewaanJasaTari
-Route::prefix('penyewaan-jasa-tari')->group(function () {
+Route::prefix('tari')->group(function () {
     Route::get('/all', [PenyewaanJasaTariController::class, 'index']); // Mendapatkan semua data
     // Route::get('/{id}', [PenyewaanJasaTariController::class, 'show']); // Mendapatkan detail data
     // Route::post('/', [PenyewaanJasaTariController::class, 'store']); // Menambahkan data baru
