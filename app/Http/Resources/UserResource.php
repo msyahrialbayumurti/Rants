@@ -10,9 +10,10 @@ class UserResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'name' => $this->nama,
-            'nohp' =>$this->nohp,
+            'name' => $this->name,
             'email' => $this->email,
+            'nohp' => $this->nohp,
+            'image_url' => $this->image_url, // Menggunakan accessor
         ];
     }
 }
