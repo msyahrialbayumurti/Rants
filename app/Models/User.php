@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Support\Facades\Hash;
 
 class User extends Authenticatable
 {
@@ -20,6 +21,7 @@ class User extends Authenticatable
         'nohp',
         'email',
         'password',
+        'image', // Tambahkan kolom image agar bisa diisi saat update
         'role',
     ];
 
@@ -41,4 +43,28 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    /**
+     * Mutator: Hash password secara otomatis.
+     */
+    public function setPasswordAttribute($value)
+    {
+        if (!empty($value)) {
+            $this->attributes['password'] = Hash::make($value);
+        }
+    }
+
+    /**
+     * Accessor: Menghasilkan URL gambar profil lengkap.
+     *
+     * @return string|null
+     */
+    public function getImageUrlAttribute()
+    {
+        if ($this->image) {
+            return url('storage/images/' . $this->image);
+        }
+
+        return url('storage/images/default.png'); // Default image
+    }
 }
