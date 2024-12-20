@@ -10301,3 +10301,5 @@
 [2024-12-20 16:07:59] local.WARNING: Password salah: {"input_password":"123457","hashed_password":"$2y$12$n/QxA4y.D7hENRkWNHc1ROU3QdjkNKioT9GZaOqTmLnh6R3DlL0X6"} 
 [2024-12-20 16:10:39] local.INFO: Data login yang diterima: {"email":"uci@gmail.com","password":"123457"} 
 [2024-12-20 16:10:39] local.WARNING: Password salah: {"input_password":"123457","hashed_password":"$2y$12$n/QxA4y.D7hENRkWNHc1ROU3QdjkNKioT9GZaOqTmLnh6R3DlL0X6"} 
+[2024-12-20 16:58:51] local.INFO: Data login yang diterima: {"email":"v@mail.com","password":"111111"} 
+[2024-12-20 16:58:51] local.WARNING: Password salah: {"input_password":"111111","hashed_password":"$2y$12$eGp9qRw0/vs0zUHG4PhvbuYWTOpbns7DMLJNXAi1hgWGWORjVPD.O"} 
