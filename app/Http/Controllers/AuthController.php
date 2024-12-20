@@ -5,14 +5,23 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use App\Models\User;
+use Illuminate\Support\Facades\Log;
 
 class AuthController extends Controller
 {
+
+    public function showLogin()
+    {
+        return view('pages.login'); // Pastikan file ada di resources/views/auth/login.blade.php
+    }
+
     /**
      * Login user dan generate token.
      */
     public function login(Request $request)
     {
+        Log::info('Data login yang diterima:', $request->all());
+
         // Validasi input
         $request->validate([
             'email' => 'required|email',
@@ -23,12 +32,25 @@ class AuthController extends Controller
         $user = User::where('email', $request->email)->first();
 
         // Periksa password
-        if (!$user || !Hash::check($request->password, $user->password)) {
-            return response()->json([
-                'status' => 'error',
-                'message' => 'Email atau password salah',
-            ], 401);
+        // if (!$user || !Hash::check($request->password, $user->password)) {
+        //     Log::info('User tidak ditemukan:', ['email' => $request->email]);
+        //     return response()->json([
+        //         'status' => 'error',
+        //         'message' => 'Email atau password salah',
+        //     ], 401);
+        // }
+
+        if (!$user) {
+            Log::warning('User tidak ditemukan:', ['email' => $request->email]);
         }
+        
+        if (!Hash::check($request->password, $user->password)) {
+            Log::warning('Password salah:', [
+                'input_password' => $request->password,
+                'hashed_password' => $user->password
+            ]);
+        }
+        
 
         // Buat token menggunakan Sanctum
         $token = $user->createToken('API Token')->plainTextToken;

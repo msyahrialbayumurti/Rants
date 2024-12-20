@@ -10,6 +10,12 @@ use Illuminate\Validation\ValidationException;
 
 class RegisterController extends Controller
 {
+
+    public function showRegister()
+    {
+        return view('pages.register'); // Pastikan file ada di resources/views/auth/login.blade.php
+    }
+
     /**
      * Menangani proses registrasi pengguna baru.
      */
@@ -25,11 +31,18 @@ class RegisterController extends Controller
             ]);
 
             // Membuat user baru
+            // $user = User::create([
+            //     'name' => $validatedData['name'],
+            //     'email' => $validatedData['email'],
+            //     'nohp' => $validatedData['nohp'],
+            //     'password' => Hash::make($validatedData['password']),  // Enkripsi password
+            // ]);
+
             $user = User::create([
                 'name' => $validatedData['name'],
-                'email' => $validatedData['email'],
+                'email' => strtolower(trim($validatedData['email'])), // Normalisasi email
                 'nohp' => $validatedData['nohp'],
-                'password' => Hash::make($validatedData['password']),  // Enkripsi password
+                'password' => Hash::make($validatedData['password']), // Hash password
             ]);
 
             // Buat token Sanctum

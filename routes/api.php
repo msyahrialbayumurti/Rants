@@ -36,8 +36,8 @@ Route::get('/galleries', [GalleryController::class, 'index']);
 // 4. Kostum
 Route::prefix('kostum')->group(function () {
     Route::get('/all', [KostumController::class, 'index']); // Mendapatkan semua kostum
-//     Route::post('/', [KostumController::class, 'store']); // Menambahkan kostum
-//     Route::get('/{id}', [KostumController::class, 'show']); // Mendapatkan detail kostum
+    // Route::post('/', [KostumController::class, 'store']); // Menambahkan kostum
+    Route::get('/{id}', [KostumController::class, 'show']); // Mendapatkan detail kostum
 //     Route::put('/{id}', [KostumController::class, 'update']); // Mengupdate kostum
 //     Route::delete('/{id}', [KostumController::class, 'destroy']); // Menghapus kostum
 });
@@ -45,16 +45,16 @@ Route::prefix('kostum')->group(function () {
 // 5. MakeUp
 Route::prefix('makeup')->group(function () {
     Route::get('/all', [MakeupController::class, 'index']); // Mendapatkan semua makeup
-    // Route::get('/{id}', [MakeupController::class, 'show']); // Mendapatkan detail makeup
+    Route::get('/{id}', [MakeupController::class, 'show']); // Mendapatkan detail makeup
     // Route::post('/', [MakeupController::class, 'store']); // Menambahkan makeup baru
     // Route::put('/{id}', [MakeupController::class, 'update']); // Mengupdate makeup
     // Route::delete('/{id}', [MakeupController::class, 'destroy']); // Menghapus makeup
 });
 
 //PenyewaanJasaTari
-Route::prefix('penyewaan-jasa-tari')->group(function () {
+Route::prefix('tari')->group(function () {
     Route::get('/all', [PenyewaanJasaTariController::class, 'index']); // Mendapatkan semua data
-    // Route::get('/{id}', [PenyewaanJasaTariController::class, 'show']); // Mendapatkan detail data
+    Route::get('/{id}', [PenyewaanJasaTariController::class, 'show']); // Mendapatkan detail data
     // Route::post('/', [PenyewaanJasaTariController::class, 'store']); // Menambahkan data baru
     // Route::put('/{id}', [PenyewaanJasaTariController::class, 'update']); // Mengupdate data
     // Route::delete('/{id}', [PenyewaanJasaTariController::class, 'destroy']); // Menghapus data

@@ -76,7 +76,7 @@ class UserController extends Controller
                 $user->image = $imageName;
             }
 
-            $user->save();
+            // $user->save();
 
             return response()->json([
                 'status' => 'success',
@@ -100,3 +100,4 @@ class UserController extends Controller
         }
     }
 }
+
