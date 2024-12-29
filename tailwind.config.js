@@ -4,6 +4,7 @@ export default {
         "./resources/**/*.blade.php",
         "./resources/**/*.js",
         "./resources/**/*.vue",
+        "./node_modules/@flaticon/flaticon-uicons/**/*.css"
       ],
   content: [],
   theme: {
