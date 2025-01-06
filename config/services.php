@@ -32,11 +32,12 @@ return [
     ],
 
 
-    'midtrans' => [
-    'server_key' => env('SB-Mid-server-JelSYwsFboE59RyHvNBwE09J'),
-    'client_key' => env('SB-Mid-client-HY38PtjH9QsS5rUG'),
-    'environment' => env('MIDTRANS_ENVIRONMENT', 'sandbox'),
-    'is_production' => env('MIDTRANS_IS_PRODUCTION', false),
-    ],
+        'midtrans' => [
+            'server_key' => env('MIDTRANS_SERVER_KEY'),
+            'client_key' => env('MIDTRANS_CLIENT_KEY'),
+            'environment' => env('MIDTRANS_ENVIRONMENT', 'sandbox'),
+            'is_production' => env('MIDTRANS_IS_PRODUCTION', false),
+        ],
+    
 
 ];

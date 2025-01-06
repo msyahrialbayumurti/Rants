@@ -14,6 +14,7 @@ use App\Http\Controllers\PenyewaanJasaTariController;
 use App\Http\Controllers\PesananKostumController;
 use App\Http\Controllers\PesananMakeUpController;
 use App\Http\Controllers\PesananPenyewaanJasaTariController;
+use App\Http\Controllers\PesananTariController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\PaymentController;
 
@@ -26,7 +27,8 @@ Route::post('/register', [RegisterController::class, 'register']);
 
 // Route::post('/login', [AuthController::class, 'login']);
 // Route::post('/register', [RegisterController::class, 'register']);
-
+Route::middleware('auth:sanctum')->post('/payment/createTransaction', [PaymentController::class, 'createTransaction']);
+Route::middleware('auth:sanctum')->post('/payment/makeup/succes', [PaymentController::class, 'verifyPaymentMakeup']);
 // 2. Jadwal Acara
 Route::get('/acara/{tanggal}', [CalendarController::class, 'schedule']);
 
@@ -65,9 +67,12 @@ Route::get('pesanan-kostum', [PesananKostumController::class, 'index']);
 Route::get('pesanan-kostum/{id}', [PesananKostumController::class, 'show']);
 
 //PesananMakeUp
-Route::get('pesanan-makeup', [PesananKostumController::class, 'index']);
+
+Route::post('pesanan-makeup', [PesananMakeUpController::class, 'createOrder']);
+Route::get('pesanan-makeup', [PesananMakeupController::class, 'index']);
 Route::get('pesanan-makeup/{id}', [PesananKostumController::class, 'show']);
 
 //PesananPenyewaanJasaTari
+Route::post('pesanan-tari', [PesananPenyewaanJasaTariController::class, 'createOrder']);
 Route::get('pesanan-penyewaanjasatari', [PesananPenyewaanJasaTariController::class, 'index']);
 Route::get('pesanan-penyewaanjasatari/{id}', [PesananPenyewaanJasaTariController::class, 'show']);

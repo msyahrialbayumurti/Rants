@@ -15,35 +15,59 @@
 <body class="bg-gray-100">
 
     <!-- Header -->
-    <header class="bg-gray-100 shadow-md sticky top-0 z-50 ">
+    <header class="bg-gray-100 shadow-md top-0 z-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex items-center justify-between h-16">
+            <div class="flex items-center justify-between h-20">
                 <!-- Logo -->
                 <div class="flex-shrink-0">
                     <a href="{{ route('index') }}">
-                      <img class="h-28" src="{{ asset('assets/img/logo.png') }}" alt="Logo">
+                        <img class="h-28" src="{{ asset('assets/img/logo.png') }}" alt="Logo">
                     </a>
                 </div>
-
+    
                 <!-- Navigation Menu -->
-                <div class="flex space-x-4 mx-auto font-medium">
+                <div id="menu" class="hidden md:flex space-x-4 mx-auto font-medium">
                     <a href="#" class="text-gray-500 hover:text-red-700 transition duration-300">Beranda</a>
-                    <a href="{{ route('home') }}"
-                        class="text-gray-500 hover:text-red-700 transition duration-300">Pesan</a>
+                    <a href="{{ route('home') }}" class="text-gray-500 hover:text-red-700 transition duration-300">Pesan</a>
                     <a href="#" class="text-gray-500 hover:text-red-700 transition duration-300">Layanan</a>
                     <a href="#" class="text-gray-500 hover:text-red-700 transition duration-300">Tentang Kami</a>
                     <a href="#" class="text-gray-500 hover:text-red-700 transition duration-300">Kontak</a>
+                    {{-- <a href="{{ route('login') }}" class="block px-4 py-2 text-white rounded-md hover:bg-blue-600 transition duration-300" style="background: hsla(57, 99%, 50%, 1);background: linear-gradient(180deg, hsla(57, 99%, 50%, 1) 0%, hsla(9, 100%, 51%, 1) 100%);background: -moz-linear-gradient(180deg, hsla(57, 99%, 50%, 1) 0%, hsla(9, 100%, 51%, 1) 100%);background: -webkit-linear-gradient(180deg, hsla(57, 99%, 50%, 1) 0%, hsla(9, 100%, 51%, 1) 100%);filter: progid: DXImageTransform.Microsoft.gradient(startColorstr='#FEF001', endColorstr='#FF2C05', GradientType=1);max-width: 200px;margin: 0 auto;">Login</a> --}}
                 </div>
-
-                <a href="{{ route('login') }}"
-                    class="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition duration-300">Login</a>
-                <!-- Right Side - Button or Login/Signup -->
-                <!-- <div class="flex items-center space-x-4">
-                    <a href="#" class="text-gray-600 hover:text-blue-500 transition duration-300">Login</a>
-                </div> -->
+    
+                <!-- Hamburger Menu (for screens <= 768px) -->
+                <div class="md:hidden">
+                    <button id="menu-button" class="text-gray-600 hover:text-red-700 focus:outline-none">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+    
+            <!-- Mobile Menu -->
+            <div id="mobile-menu" class="hidden md:hidden mt-4 space-y-2 font-medium">
+                <a href="#" class="block text-gray-500 hover:text-red-700 transition duration-300">Beranda</a>
+                <a href="{{ route('home') }}" class="block text-gray-500 hover:text-red-700 transition duration-300">Pesan</a>
+                <a href="#" class="block text-gray-500 hover:text-red-700 transition duration-300">Layanan</a>
+                <a href="#" class="block text-gray-500 hover:text-red-700 transition duration-300">Tentang Kami</a>
+                <a href="#" class="block text-gray-500 hover:text-red-700 transition duration-300">Kontak</a>
+                <a href="{{ route('login') }}" class="block px-4 py-2 text-white rounded-md hover:bg-blue-600 transition duration-300" style="background: hsla(57, 99%, 50%, 1);background: linear-gradient(180deg, hsla(57, 99%, 50%, 1) 0%, hsla(9, 100%, 51%, 1) 100%);background: -moz-linear-gradient(180deg, hsla(57, 99%, 50%, 1) 0%, hsla(9, 100%, 51%, 1) 100%);background: -webkit-linear-gradient(180deg, hsla(57, 99%, 50%, 1) 0%, hsla(9, 100%, 51%, 1) 100%);filter: progid: DXImageTransform.Microsoft.gradient(startColorstr='#FEF001', endColorstr='#FF2C05', GradientType=1);max-width: 200px;margin: 0 auto;">Login</a>
             </div>
         </div>
     </header>
+    
+    <script>
+        // JavaScript for toggling the mobile menu
+        const menuButton = document.getElementById('menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+    
+        menuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+    </script>
+    
+    
 
     <!-- Content Section (just for demo) -->
     <section class="relative bg-gray-50 h-screen flex items-center">
@@ -65,16 +89,11 @@
                     facere, consequatur magni! Officia, illum? </p>
                 <button
                     class="mt-8 bg-red-600 hover:bg-red-700 text-white font-medium py-3 px-6 rounded-lg shadow-lg transition">
-                    READ MORE
+                    Selengkapnya
                 </button>
             </div>
         </div>
     </section>
-
-
-
-
-
 
     <section class="py-16 bg-gray-50">
         <!-- Heading Section -->
@@ -228,7 +247,7 @@
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
                 <!-- Image Card -->
                 <div class="relative group overflow-hidden rounded-lg shadow-lg">
-                    <img src="/public/assets/img/landing-page/landingpage.webp" alt="Project 1"
+                    <img src="{{ asset('assets/img/logo.png') }}" alt="Project 1"
                         class="h-80 w-full object-cover transition-transform duration-500 group-hover:scale-110">
                     <div
                         class="absolute bottom-0 left-0 w-full bg-gradient-to-t from-black via-transparent to-transparent p-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
@@ -277,7 +296,7 @@
         <h1 class="text-4xl font-bold">Welcome to the Website!</h1>
     </div>
 
-    <footer class="bg-blue-900 text-white py-12">
+    <footer class="bg-red-800 text-white py-12">
         <div class="max-w-7xl mx-auto px-6 lg:px-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
             <!-- Logo and Description -->
             <div>
@@ -290,14 +309,14 @@
                     injected humour or words.
                 </p>
                 <div class="flex space-x-4 mt-6">
-                    <a href="#" class="bg-blue-700 p-2 rounded-full">
+                    <a href="#" class="bg-red-700 p-2 rounded-full">
                       <i class="fa-brands fa-facebook"></i>
                     </a>
-                    <a href="#" class="bg-blue-700 p-2 rounded-full">
+                    <a href="#" class="bg-red-700 p-2 rounded-full">
                       <i class="fa-brands fa-x-twitter"></i>
                     </a>
                     <a href="https://www.instagram.com/rants.id?igsh=MXh4bHMzNmd2Y3Q3ag=="
-                        class="bg-blue-700 p-2 rounded-full">
+                        class="bg-red-700 p-2 rounded-full">
                         <i class="fa-brands fa-instagram"></i> 
                     </a>
 
@@ -306,7 +325,7 @@
 
             <!-- Services -->
             <div>
-                <h4 class="text-lg font-semibold border-b-2 border-blue-400 pb-2">layanan</h4>
+                <h4 class="text-lg font-semibold border-b-2 border-red-400 pb-2">layanan</h4>
                 <ul class="mt-4 space-y-2 text-gray-300">
                     <li><a href="#" class="hover:text-white">Jasa Tari</a></li>
                     <li><a href="#" class="hover:text-white">Sewa Kostum</a></li>
@@ -318,7 +337,7 @@
 
             <!-- Useful Links -->
             <div>
-                <h4 class="text-lg font-semibold border-b-2 border-blue-400 pb-2">Useful Links</h4>
+                <h4 class="text-lg font-semibold border-b-2 border-red-400 pb-2">Useful Links</h4>
                 <ul class="mt-4 space-y-2 text-gray-300">
                     <li><a href="#" class="hover:text-white">Home</a></li>
                     <li><a href="#" class="hover:text-white">Service</a></li>
@@ -329,7 +348,7 @@
 
             <!-- Newsletter -->
             <div>
-                <h4 class="text-lg font-semibold border-b-2 border-blue-400 pb-2">Newsletter</h4>
+                <h4 class="text-lg font-semibold border-b-2 border-red-400 pb-2">Newsletter</h4>
                 <p class="mt-4 text-gray-300">
                     Seamlessly visualize quality intellectual capital without superior collaboration and idea sharing
                     listically.
@@ -338,7 +357,7 @@
                     <input type="email" placeholder="Enter Your Email"
                         class="w-full p-3 rounded-md text-gray-800 focus:outline-none">
                     <button
-                        class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 mt-2 rounded-md w-full">
+                        class="bg-red-600 hover:bg-red-700 text-white font-semibold py-2 px-4 mt-2 rounded-md w-full">
                         SUBMIT NOW
                     </button>
                 </div>
@@ -349,7 +368,7 @@
         <div class="mt-12 border-t border-gray-600 pt-8">
             <div class="max-w-7xl mx-auto px-6 lg:px-8 flex flex-col sm:flex-row justify-between text-gray-300">
                 <div class="flex items-center space-x-4">
-                    <div class="bg-blue-700 p-3 rounded-full">
+                    <div class="bg-red-700 p-3 rounded-full">
                       <i class="fa-solid fa-envelope"></i>
                     </div>
                     <div>
@@ -358,20 +377,20 @@
                     </div>
                 </div>
                 <div class="flex items-center space-x-4 mt-6 sm:mt-0">
-                    <div class="bg-blue-700 p-3 rounded-full">
+                    <div class="bg-red-700 p-3 rounded-full">
                       <i class="fa-solid fa-phone"></i>
                     </div>
                     <div>
-                        <h5 class="font-semibold">Phone</h5>
+                        <h5 class="font-semibold">No HP</h5>
                         <p>(+62) 852 6394 5612</p>
                     </div>
                 </div>
                 <div class="flex items-center space-x-4 mt-6 sm:mt-0">
-                    <div class="bg-blue-700 p-3 rounded-full">
+                    <div class="bg-red-700 p-3 rounded-full">
                       <i class="fa-solid fa-location-dot"></i>
                     </div>
                     <div>
-                        <h5 class="font-semibold">Address</h5>
+                        <h5 class="font-semibold">Alamat</h5>
                         <p>Jl. Bathin Alam, Sungai Alam, Bengkalis – Riau</p>
                     </div>
                 </div>

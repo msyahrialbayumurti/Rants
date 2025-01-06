@@ -8,6 +8,9 @@ export default {
       ],
   content: [],
   theme: {
+    colors:{
+      'rred': '#ff2c05'
+    },
     extend: {},
   },
   plugins: [],

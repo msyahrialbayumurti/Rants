@@ -9,19 +9,20 @@ class PesananPenyewaanJasaTari extends Model
 {
 
 
+    protected $table = 'pesanan_penyewaan_jasa_taris';
         // Atribut yang dapat diisi melalui mass assignment
         protected $fillable = [
             'penyewaan_jasa_taris_id',
             'Users_id',
             'tanggal',
             'jam_pemakaian',
-            'lokasi',
             'alamat',
             'latitude',
             'longitude',
             'total_harga',
             'status_pesanan',
         ];
+
     public function pesanan_penyewaan_jasa_tari(): BelongsTo
     {
         return $this->belongsTo (PenyewaanJasaTari::class);
