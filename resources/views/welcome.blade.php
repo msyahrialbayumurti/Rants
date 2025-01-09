@@ -4,12 +4,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    @vite('resources/css/app.css')
     <title>Beranda</title>
-    <script src="https://cdn.tailwindcss.com"></script>
     <link rel="icon" href="{{ asset('assets/img/logo.png') }}" sizes="20x20" type="image/x-icon">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
-    {{-- <link rel="stylesheet" href="{{ asset('assets/css/app.css') }}">
-    <link rel="stylesheet" href="{{ asset('/fontawesome-free-6.7.2-web/css/all.min.css') }}"> --}}
+    <!-- <link rel="stylesheet" href="{{ mix('css/app.css') }}">
+    <script src="{{ mix('js/app.js') }}" defer></script> -->
 </head>
 
 <body class="bg-gray-100">
@@ -24,50 +26,62 @@
                         <img class="h-28" src="{{ asset('assets/img/logo.png') }}" alt="Logo">
                     </a>
                 </div>
-    
+
                 <!-- Navigation Menu -->
                 <div id="menu" class="hidden md:flex space-x-4 mx-auto font-medium">
                     <a href="#" class="text-gray-500 hover:text-red-700 transition duration-300">Beranda</a>
-                    <a href="{{ route('home') }}" class="text-gray-500 hover:text-red-700 transition duration-300">Pesan</a>
+                    <a href="{{ route('home') }}"
+                        class="text-gray-500 hover:text-red-700 transition duration-300">Pesan</a>
                     <a href="#" class="text-gray-500 hover:text-red-700 transition duration-300">Layanan</a>
                     <a href="#" class="text-gray-500 hover:text-red-700 transition duration-300">Tentang Kami</a>
                     <a href="#" class="text-gray-500 hover:text-red-700 transition duration-300">Kontak</a>
-                    {{-- <a href="{{ route('login') }}" class="block px-4 py-2 text-white rounded-md hover:bg-blue-600 transition duration-300" style="background: hsla(57, 99%, 50%, 1);background: linear-gradient(180deg, hsla(57, 99%, 50%, 1) 0%, hsla(9, 100%, 51%, 1) 100%);background: -moz-linear-gradient(180deg, hsla(57, 99%, 50%, 1) 0%, hsla(9, 100%, 51%, 1) 100%);background: -webkit-linear-gradient(180deg, hsla(57, 99%, 50%, 1) 0%, hsla(9, 100%, 51%, 1) 100%);filter: progid: DXImageTransform.Microsoft.gradient(startColorstr='#FEF001', endColorstr='#FF2C05', GradientType=1);max-width: 200px;margin: 0 auto;">Login</a> --}}
+                    {{-- <a href="{{ route('login') }}" class="block px-4 py-2 text-white rounded-md hover:bg-blue-600
+                    transition duration-300" style="background: hsla(57, 99%, 50%, 1);background:
+                    linear-gradient(180deg, hsla(57, 99%, 50%, 1) 0%, hsla(9, 100%, 51%, 1) 100%);background:
+                    -moz-linear-gradient(180deg, hsla(57, 99%, 50%, 1) 0%, hsla(9, 100%, 51%, 1) 100%);background:
+                    -webkit-linear-gradient(180deg, hsla(57, 99%, 50%, 1) 0%, hsla(9, 100%, 51%, 1) 100%);filter:
+                    progid: DXImageTransform.Microsoft.gradient(startColorstr='#FEF001', endColorstr='#FF2C05',
+                    GradientType=1);max-width: 200px;margin: 0 auto;">Login</a> --}}
                 </div>
-    
+
                 <!-- Hamburger Menu (for screens <= 768px) -->
                 <div class="md:hidden">
                     <button id="menu-button" class="text-gray-600 hover:text-red-700 focus:outline-none">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                            stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M4 6h16M4 12h16m-7 6h7" />
                         </svg>
                     </button>
                 </div>
             </div>
-    
+
             <!-- Mobile Menu -->
             <div id="mobile-menu" class="hidden md:hidden mt-4 space-y-2 font-medium">
                 <a href="#" class="block text-gray-500 hover:text-red-700 transition duration-300">Beranda</a>
-                <a href="{{ route('home') }}" class="block text-gray-500 hover:text-red-700 transition duration-300">Pesan</a>
+                <a href="{{ route('home') }}"
+                    class="block text-gray-500 hover:text-red-700 transition duration-300">Pesan</a>
                 <a href="#" class="block text-gray-500 hover:text-red-700 transition duration-300">Layanan</a>
                 <a href="#" class="block text-gray-500 hover:text-red-700 transition duration-300">Tentang Kami</a>
                 <a href="#" class="block text-gray-500 hover:text-red-700 transition duration-300">Kontak</a>
-                <a href="{{ route('login') }}" class="block px-4 py-2 text-white rounded-md hover:bg-blue-600 transition duration-300" style="background: hsla(57, 99%, 50%, 1);background: linear-gradient(180deg, hsla(57, 99%, 50%, 1) 0%, hsla(9, 100%, 51%, 1) 100%);background: -moz-linear-gradient(180deg, hsla(57, 99%, 50%, 1) 0%, hsla(9, 100%, 51%, 1) 100%);background: -webkit-linear-gradient(180deg, hsla(57, 99%, 50%, 1) 0%, hsla(9, 100%, 51%, 1) 100%);filter: progid: DXImageTransform.Microsoft.gradient(startColorstr='#FEF001', endColorstr='#FF2C05', GradientType=1);max-width: 200px;margin: 0 auto;">Login</a>
+                <a href="{{ route('login') }}"
+                    class="block px-4 py-2 text-white rounded-md hover:bg-blue-600 transition duration-300"
+                    style="background: hsla(57, 99%, 50%, 1);background: linear-gradient(180deg, hsla(57, 99%, 50%, 1) 0%, hsla(9, 100%, 51%, 1) 100%);background: -moz-linear-gradient(180deg, hsla(57, 99%, 50%, 1) 0%, hsla(9, 100%, 51%, 1) 100%);background: -webkit-linear-gradient(180deg, hsla(57, 99%, 50%, 1) 0%, hsla(9, 100%, 51%, 1) 100%);filter: progid: DXImageTransform.Microsoft.gradient(startColorstr='#FEF001', endColorstr='#FF2C05', GradientType=1);max-width: 200px;margin: 0 auto;">Login</a>
             </div>
         </div>
     </header>
-    
+
     <script>
-        // JavaScript for toggling the mobile menu
-        const menuButton = document.getElementById('menu-button');
-        const mobileMenu = document.getElementById('mobile-menu');
-    
-        menuButton.addEventListener('click', () => {
-            mobileMenu.classList.toggle('hidden');
-        });
+    // JavaScript for toggling the mobile menu
+    const menuButton = document.getElementById('menu-button');
+    const mobileMenu = document.getElementById('mobile-menu');
+
+    menuButton.addEventListener('click', () => {
+        mobileMenu.classList.toggle('hidden');
+    });
     </script>
-    
-    
+
+
 
     <!-- Content Section (just for demo) -->
     <section class="relative bg-gray-50 h-screen flex items-center">
@@ -310,14 +324,14 @@
                 </p>
                 <div class="flex space-x-4 mt-6">
                     <a href="#" class="bg-red-700 p-2 rounded-full">
-                      <i class="fa-brands fa-facebook"></i>
+                        <i class="fa-brands fa-facebook"></i>
                     </a>
                     <a href="#" class="bg-red-700 p-2 rounded-full">
-                      <i class="fa-brands fa-x-twitter"></i>
+                        <i class="fa-brands fa-x-twitter"></i>
                     </a>
                     <a href="https://www.instagram.com/rants.id?igsh=MXh4bHMzNmd2Y3Q3ag=="
                         class="bg-red-700 p-2 rounded-full">
-                        <i class="fa-brands fa-instagram"></i> 
+                        <i class="fa-brands fa-instagram"></i>
                     </a>
 
                 </div>
@@ -369,7 +383,7 @@
             <div class="max-w-7xl mx-auto px-6 lg:px-8 flex flex-col sm:flex-row justify-between text-gray-300">
                 <div class="flex items-center space-x-4">
                     <div class="bg-red-700 p-3 rounded-full">
-                      <i class="fa-solid fa-envelope"></i>
+                        <i class="fa-solid fa-envelope"></i>
                     </div>
                     <div>
                         <h5 class="font-semibold">Email</h5>
@@ -378,7 +392,7 @@
                 </div>
                 <div class="flex items-center space-x-4 mt-6 sm:mt-0">
                     <div class="bg-red-700 p-3 rounded-full">
-                      <i class="fa-solid fa-phone"></i>
+                        <i class="fa-solid fa-phone"></i>
                     </div>
                     <div>
                         <h5 class="font-semibold">No HP</h5>
@@ -387,7 +401,7 @@
                 </div>
                 <div class="flex items-center space-x-4 mt-6 sm:mt-0">
                     <div class="bg-red-700 p-3 rounded-full">
-                      <i class="fa-solid fa-location-dot"></i>
+                        <i class="fa-solid fa-location-dot"></i>
                     </div>
                     <div>
                         <h5 class="font-semibold">Alamat</h5>
