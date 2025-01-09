@@ -4,37 +4,53 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Novalie - Winter Sale</title>
-    {{-- @vite('resources/css/app.css') --}}
+    @vite('resources/css/app.css')
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-gray-100">
     <!-- Header -->
-    <header class="bg-gray-100 shadow-md sticky top-0 z-50 ">
+    <header class="bg-gray-100 shadow-md sticky top-0 z-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-16">
                 <!-- Logo -->
                 <div class="flex-shrink-0">
-                    <img class="h-28" src="{{ asset('assets/img/logo.png') }}" alt="Logo">
+                    <img class="h-14 sm:h-16 md:h-20 lg:h-28" src="{{ asset('assets/img/logo.png') }}" alt="Logo">
                 </div>
-
+    
                 <!-- Navigation Menu -->
-                <div class="flex space-x-4 mx-auto font-reguler">
+                <div class="hidden md:flex space-x-4 mx-auto font-reguler">
                     <a href="{{ route('index') }}" class="text-gray-500 hover:text-red-700 transition duration-300">Beranda</a>
                     <a href="{{ route('home') }}" class="text-gray-500 hover:text-red-700 transition duration-300">Pesan</a>
                     <a href="#" class="text-gray-500 hover:text-red-700 transition duration-300">Layanan</a>
                     <a href="#" class="text-gray-500 hover:text-red-700 transition duration-300">Tentang Kami</a>
                     <a href="#" class="text-gray-500 hover:text-red-700 transition duration-300">Kontak</a>
                 </div>
-                
-                {{-- <a href="{{ route('login') }}" class="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition duration-300">Login</a> --}}
+    
+                <!-- Mobile Menu Button (Hamburger) -->
+                <div class="md:hidden">
+                    <button id="hamburgerButton" class="text-gray-500 hover:text-red-700 transition duration-300">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                    </button>
+                </div>
             </div>
         </div>
+    
+        <!-- Mobile Menu Dropdown -->
+        <div id="mobileMenu" class="md:hidden hidden mt-4 space-y-4 px-4">
+            <a href="{{ route('index') }}" class="block text-gray-500 hover:text-red-700 transition duration-300">Beranda</a>
+            <a href="{{ route('home') }}" class="block text-gray-500 hover:text-red-700 transition duration-300">Pesan</a>
+            <a href="#" class="block text-gray-500 hover:text-red-700 transition duration-300">Layanan</a>
+            <a href="{{ route('tentangkami') }}" class="block text-gray-500 hover:text-red-700 transition duration-300">Tentang Kami</a>
+            <a href="#" class="block text-gray-500 hover:text-red-700 transition duration-300">Kontak</a>
+        </div>
     </header>
-
+    
     <!-- Hero Section -->
-    <section class="relative bg-gray-50 px-8 h-screen flex items-center">
+    <section class="relative bg-gray-50 px-8 h-screen flex items-start">
         <div class="flex flex-wrap w-full md:flex-nowrap items-center">
-            <div class="w-full md:w-1/2 mt-6 md:mt-0">
+            <div class="w-full md:w-1/2 mt-12 md:mt-12">
                 <img src="{{ asset('assets/img/tariLandingpage.jpg') }}" alt="Winter Sale" class="rounded-lg shadow-lg">
             </div>
             <div class="w-full md:w-1/2 ml-10">
@@ -44,6 +60,7 @@
             </div>
         </div>
     </section>
+    
     <!-- Categories Section -->
     <section class="container mx-auto mt-12 px-6">
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -69,7 +86,7 @@
     </section>
 
     <!-- Banner Section -->
-    <section class="bg-gray-800 text-white py-12 px-6 text-center">
+    <section class="bg-gray-800 text-white mt-2 py-12 px-6 text-center">
         <h1 class="text-2xl font-semibold mb-2">Join the email list</h1>
         <p class="text-sm mb-6">Be the first to know about new collections and exclusive offers.</p>
         <form action="#" class="flex justify-center items-center gap-2">
@@ -280,5 +297,17 @@
             </div>
         </div>
     </section>
+    <script>
+        // Mengambil referensi tombol hamburger dan menu mobile
+        const hamburgerButton = document.getElementById("hamburgerButton");
+        const mobileMenu = document.getElementById("mobileMenu");
+    
+        // Menambahkan event listener ke tombol hamburger
+        hamburgerButton.addEventListener("click", () => {
+            // Toggle visibility menu mobile
+            mobileMenu.classList.toggle("hidden");
+        });
+    </script>
+    
 </body>
 </html>

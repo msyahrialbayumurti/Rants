@@ -4,12 +4,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    @vite('resources/css/app.css')
     <title>Beranda</title>
-    <script src="https://cdn.tailwindcss.com"></script>
     <link rel="icon" href="{{ asset('assets/img/logo.png') }}" sizes="20x20" type="image/x-icon">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
-    {{-- <link rel="stylesheet" href="{{ asset('assets/css/app.css') }}">
-    <link rel="stylesheet" href="{{ asset('/fontawesome-free-6.7.2-web/css/all.min.css') }}"> --}}
+    <link rel="stylesheet" href="{{ mix('css/app.css') }}">
+    {{-- <script src="https://cdn.tailwindcss.com"></script> --}}
+
+
 </head>
 
 <body class="bg-gray-100">
@@ -21,7 +23,7 @@
                 <!-- Logo -->
                 <div class="flex-shrink-0">
                     <a href="{{ route('index') }}">
-                        <img class="h-28" src="{{ asset('assets/img/logo.png') }}" alt="Logo">
+                        <img class="h-12" src="{{ asset('assets/img/TransaparentRants (300 x 100 piksel).svg') }}" alt="Logo">
                     </a>
                 </div>
     
@@ -381,7 +383,7 @@
                       <i class="fa-solid fa-phone"></i>
                     </div>
                     <div>
-                        <h5 class="font-semibold">No HP</h5>
+                        <h5 class="font-semibold">Nomor Telepon</h5>
                         <p>(+62) 852 6394 5612</p>
                     </div>
                 </div>

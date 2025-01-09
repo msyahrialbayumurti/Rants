@@ -12,7 +12,13 @@ Route::get('/', function () {
 })->name('index');
 
 
+Route::get('/kontak', [HomeController::class, 'showKontak'])->name('kontak');
+
+Route::get('/layanan', [HomeController::class, 'showLayanan'])->name('layanan');
+
 Route::get('/home', [HomeController::class, 'showHome'])->name('home');
+
+Route::get('/tentang-kami', [HomeController::class, 'showAboutme'])->name('tentangkami');
 
 // Route untuk halaman login
 Route::get('/login', [AuthController::class, 'showLogin'])->name('login');
