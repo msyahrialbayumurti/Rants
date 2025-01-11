@@ -1,52 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Novalie - Winter Sale</title>
-    @vite('resources/css/app.css')
-    <script src="https://cdn.tailwindcss.com"></script>
-</head>
-<body class="bg-gray-100">
-    <!-- Header -->
-    <header class="bg-gray-100 shadow-md sticky top-0 z-50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex items-center justify-between h-16">
-                <!-- Logo -->
-                <div class="flex-shrink-0">
-                    <img class="h-14 sm:h-16 md:h-20 lg:h-28" src="{{ asset('assets/img/logo.png') }}" alt="Logo">
-                </div>
-    
-                <!-- Navigation Menu -->
-                <div class="hidden md:flex space-x-4 mx-auto font-reguler">
-                    <a href="{{ route('index') }}" class="text-gray-500 hover:text-red-700 transition duration-300">Beranda</a>
-                    <a href="{{ route('home') }}" class="text-gray-500 hover:text-red-700 transition duration-300">Pesan</a>
-                    <a href="#" class="text-gray-500 hover:text-red-700 transition duration-300">Layanan</a>
-                    <a href="#" class="text-gray-500 hover:text-red-700 transition duration-300">Tentang Kami</a>
-                    <a href="#" class="text-gray-500 hover:text-red-700 transition duration-300">Kontak</a>
-                </div>
-    
-                <!-- Mobile Menu Button (Hamburger) -->
-                <div class="md:hidden">
-                    <button id="hamburgerButton" class="text-gray-500 hover:text-red-700 transition duration-300">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-                        </svg>
-                    </button>
-                </div>
-            </div>
-        </div>
-    
-        <!-- Mobile Menu Dropdown -->
-        <div id="mobileMenu" class="md:hidden hidden mt-4 space-y-4 px-4">
-            <a href="{{ route('index') }}" class="block text-gray-500 hover:text-red-700 transition duration-300">Beranda</a>
-            <a href="{{ route('home') }}" class="block text-gray-500 hover:text-red-700 transition duration-300">Pesan</a>
-            <a href="#" class="block text-gray-500 hover:text-red-700 transition duration-300">Layanan</a>
-            <a href="{{ route('tentangkami') }}" class="block text-gray-500 hover:text-red-700 transition duration-300">Tentang Kami</a>
-            <a href="#" class="block text-gray-500 hover:text-red-700 transition duration-300">Kontak</a>
-        </div>
-    </header>
-    
+    @extends('layouts.user.main')
+    @section('content')
     <!-- Hero Section -->
     <section class="relative bg-gray-50 px-8 h-screen flex items-start">
         <div class="flex flex-wrap w-full md:flex-nowrap items-center">
@@ -54,39 +7,51 @@
                 <img src="{{ asset('assets/img/tariLandingpage.jpg') }}" alt="Winter Sale" class="rounded-lg shadow-lg">
             </div>
             <div class="w-full md:w-1/2 ml-10">
-                <h2 class="text-4xl font-bold text-gray-800 mb-4">The Winter Sale</h2>
-                <p class="text-gray-600 text-lg mb-6">25% OFF EVERYTHING</p>
-                <button class="bg-gray-800 text-white px-6 py-2 rounded-lg hover:bg-gray-700">Shop Now</button>
+                <h2 class="text-4xl font-bold text-gray-800 mb-4">Pesan Sekarang</h2>
+                <p class="text-gray-600 text-lg mb-6">Tari Saman</p>
+                <button class="bg-gray-800 text-white px-6 py-2 rounded-lg hover:bg-gray-700">Pesan</button>
             </div>
         </div>
     </section>
     
     <!-- Categories Section -->
     <section class="container mx-auto mt-12 px-6">
+        <h2 class="text-2xl font-bold text-gray-800 mb-6">Layanan Jasa Unggulan</h2>
+    
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div class="bg-white rounded-lg shadow-lg text-center relative overflow-hidden">
-                <img src="path-to-image.jpg" alt="Candles" class="w-full h-56 object-cover">
-                <div class="absolute bottom-0 left-0 right-0 bg-gray-800 bg-opacity-75 text-white py-3">
-                    <p class="text-lg font-medium">Shop Candles</p>
+            <!-- Card 1 -->
+            <div class="bg-white rounded-lg shadow-lg text-center relative overflow-hidden group">
+                <div class="w-full h-64">
+                    <img src="{{ asset('assets/img/1.png') }}" alt="Gallery Image 1" class="w-full h-full object-cover transform group-hover:scale-110 transition duration-500 ease-in-out">
+                </div>
+                <div class="absolute bottom-0 left-0 right-0 bg-gray-800 bg-opacity-75 text-white py-3 transition-opacity duration-500 group-hover:bg-opacity-90">
+                    <p class="text-lg font-medium">Penyewaan Jasa Tari</p>
                 </div>
             </div>
-            <div class="bg-white rounded-lg shadow-lg text-center relative overflow-hidden">
-                <img src="path-to-image.jpg" alt="Vases" class="w-full h-56 object-cover">
-                <div class="absolute bottom-0 left-0 right-0 bg-gray-800 bg-opacity-75 text-white py-3">
-                    <p class="text-lg font-medium">Shop Vases</p>
+            <!-- Card 2 -->
+            <div class="bg-white rounded-lg shadow-lg text-center relative overflow-hidden group">
+                <div class="w-full h-64">
+                    <img src="{{ asset('assets/img/4.jpg') }}" alt="Gallery Image 2" class="w-full h-full object-cover transform group-hover:scale-110 transition duration-500 ease-in-out">
+                </div>
+                <div class="absolute bottom-0 left-0 right-0 bg-gray-800 bg-opacity-75 text-white py-3 transition-opacity duration-500 group-hover:bg-opacity-90">
+                    <p class="text-lg font-medium">MakeUp</p>
                 </div>
             </div>
-            <div class="bg-white rounded-lg shadow-lg text-center relative overflow-hidden">
-                <img src="path-to-image.jpg" alt="Wall Decor" class="w-full h-56 object-cover">
-                <div class="absolute bottom-0 left-0 right-0 bg-gray-800 bg-opacity-75 text-white py-3">
-                    <p class="text-lg font-medium">Shop Wall Decor</p>
+            <!-- Card 3 -->
+            <div class="bg-white rounded-lg shadow-lg text-center relative overflow-hidden group">
+                <div class="w-full h-64">
+                    <img src="{{ asset('assets/img/5.jpg') }}" alt="Gallery Image 3" class="w-full h-full object-cover transform group-hover:scale-110 transition duration-500 ease-in-out">
+                </div>
+                <div class="absolute bottom-0 left-0 right-0 bg-gray-800 bg-opacity-75 text-white py-3 transition-opacity duration-500 group-hover:bg-opacity-90">
+                    <p class="text-lg font-medium">Kostum</p>
                 </div>
             </div>
         </div>
     </section>
+    
 
     <!-- Banner Section -->
-    <section class="bg-gray-800 text-white mt-2 py-12 px-6 text-center">
+    {{-- <section class="bg-gray-800 text-white mt-2 py-12 px-6 text-center">
         <h1 class="text-2xl font-semibold mb-2">Join the email list</h1>
         <p class="text-sm mb-6">Be the first to know about new collections and exclusive offers.</p>
         <form action="#" class="flex justify-center items-center gap-2">
@@ -102,33 +67,45 @@
                 →
             </button>
         </form>
-    </section>
+    </section> --}}
 
     <!-- Categories Section -->
     <section class="container mx-auto mt-12 px-6">
-        <h2 class="text-2xl font-bold text-gray-800 mb-6">Shop New Arrivals</h2>
+        <h2 class="text-2xl font-bold text-gray-800 mb-6">Layanan Jasa Unggulan</h2>
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-            <div class="bg-white rounded-lg shadow-md p-4 text-center">
-                <img src="path-to-image.jpg" alt="Modern Sofa" class="rounded-md mb-4">
-                <h3 class="font-bold text-lg text-gray-800">Modern Sofa</h3>
-                <p class="text-gray-600">$599.00 USD</p>
+            <!-- Card 1 -->
+            <div class="bg-white rounded-lg shadow-md p-4 text-center group hover:shadow-lg transition-shadow duration-300">
+                <div class="relative overflow-hidden rounded-lg">
+                    <img src="{{ asset('assets/img/4.jpg') }}" alt="Gallery Image 2" class="w-full h-48 object-cover transform group-hover:scale-105 transition-transform duration-300">
+                </div>
+                <h3 class="font-bold text-lg text-gray-800 mt-4 group-hover:text-indigo-600 transition-colors duration-300">Makeup Soft Glam</h3>
+                <p class="text-gray-600 group-hover:text-gray-800 transition-colors duration-300">Rp 100.000</p>
             </div>
-            <div class="bg-white rounded-lg shadow-md p-4 text-center">
-                <img src="path-to-image.jpg" alt="Bistro Chair" class="rounded-md mb-4">
-                <h3 class="font-bold text-lg text-gray-800">Bistro Chair</h3>
-                <p class="text-gray-600">$75.00 USD</p>
+            <!-- Card 2 -->
+            <div class="bg-white rounded-lg shadow-md p-4 text-center group hover:shadow-lg transition-shadow duration-300">
+                <div class="relative overflow-hidden rounded-lg">
+                    <img src="{{ asset('assets/img/5.jpg') }}" alt="Gallery Image 3" class="w-full h-48 object-cover transform group-hover:scale-105 transition-transform duration-300">
+                </div>
+                <h3 class="font-bold text-lg text-gray-800 mt-4 group-hover:text-indigo-600 transition-colors duration-300">Tari Persembahan</h3>
+                <p class="text-gray-600 group-hover:text-gray-800 transition-colors duration-300">Rp 1.500.000</p>
             </div>
-            <div class="bg-white rounded-lg shadow-md p-4 text-center">
-                <img src="path-to-image.jpg" alt="Ceramic Vase" class="rounded-md mb-4">
-                <h3 class="font-bold text-lg text-gray-800">Ceramic Vase</h3>
-                <p class="text-gray-600">$32.00 USD</p>
+            <!-- Card 3 -->
+            <div class="bg-white rounded-lg shadow-md p-4 text-center group hover:shadow-lg transition-shadow duration-300">
+                <div class="relative overflow-hidden rounded-lg">
+                    <img src="{{ asset('assets/img/1.png') }}" alt="Gallery Image 1" class="w-full h-48 object-cover transform group-hover:scale-105 transition-transform duration-300">
+                </div>
+                <h3 class="font-bold text-lg text-gray-800 mt-4 group-hover:text-indigo-600 transition-colors duration-300">Kostum Tari Persembahan</h3>
+                <p class="text-gray-600 group-hover:text-gray-800 transition-colors duration-300">Rp 600.000</p>
             </div>
-            <div class="bg-white rounded-lg shadow-md p-4 text-center">
-                <img src="path-to-image.jpg" alt="Round Vase" class="rounded-md mb-4">
-                <h3 class="font-bold text-lg text-gray-800">Round Vase</h3>
-                <p class="text-gray-600">$32.00 USD</p>
+            <!-- Card 4 -->
+            <div class="bg-white rounded-lg shadow-md p-4 text-center group hover:shadow-lg transition-shadow duration-300">
+                <div class="relative overflow-hidden rounded-lg">
+                    <img src="{{ asset('assets/img/2.jpg') }}" alt="Gallery Image 2" class="w-full h-48 object-cover transform group-hover:scale-105 transition-transform duration-300">
+                </div>
+                <h3 class="font-bold text-lg text-gray-800 mt-4 group-hover:text-indigo-600 transition-colors duration-300">Tari Kreasi Modern</h3>
+                <p class="text-gray-600 group-hover:text-gray-800 transition-colors duration-300">Rp 1.500.000</p>
             </div>
-            <div class="bg-white rounded-lg shadow-md p-4 text-center">
+            {{-- <div class="bg-white rounded-lg shadow-md p-4 text-center">
                 <img src="path-to-image.jpg" alt="Antique Gilded Mirror" class="rounded-md mb-4">
                 <h3 class="font-bold text-lg text-gray-800">Antique Gilded Mirror</h3>
                 <p class="text-gray-600">$999.00 USD</p>
@@ -147,13 +124,13 @@
                 <img src="path-to-image.jpg" alt="Gold Lamp" class="rounded-md mb-4">
                 <h3 class="font-bold text-lg text-gray-800">Gold Lamp</h3>
                 <p class="text-gray-600">$48.00 USD</p>
-            </div>
+            </div> --}}
         </div>
     </section>
 
     <!-- Reviews Section -->
 <!-- Reviews Section -->
-<section class="container mx-auto mt-12 px-6">
+{{-- <section class="container mx-auto mt-12 px-6">
     <h2 class="text-2xl font-bold text-[#4a586e] text-center mb-8">What Our Customers Are Saying</h2>
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         <!-- Review Card 1 -->
@@ -246,11 +223,11 @@
             </div>
         </div>
     </div>
-</section>
+</section> --}}
 
 
 <!-- Features Section -->
-<section class="bg-[#4a586e] text-white mt-12 py-12 px-6">
+{{-- <section class="bg-[#4a586e] text-white mt-12 py-12 px-6">
     <div class="container mx-auto grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
         <div>
             <div class="text-4xl mb-4">🌍</div>
@@ -268,22 +245,21 @@
             <p class="text-sm text-gray-300">To help our planet, we are planting one tree for every $10 you spend.</p>
         </div>
     </div>
-</section>
+</section> --}}
 
 <!-- Mission Section -->
 <section class="bg-[#f4f5f7] text-center py-12 px-6">
     <div class="container mx-auto">
         <p class="text-gray-800 text-lg mb-6">
-            Our mission at NOVALIE has always been to surprise and delight you with unexpected, curated finds for your home. We source all of our products with care, ensuring that any treasure you find at us is unique, just like you.
-        </p>
+Rants Menyediakan Layana Jasa Yang Berkualitas Dan Di Kerjakan Oleh Orang-orang profesional dan berpengalaman.        </p>
         <button class="bg-[#4a586e] text-white px-6 py-2 rounded-lg font-medium hover:bg-gray-700 transition">
-            Learn More
+            Selengkapnya
         </button>
     </div>
 </section>
 
     <!-- Additional Banner Section -->
-    <section class="bg-gray-800 text-white mt-12 py-12 px-6">
+    {{-- <section class="bg-gray-800 text-white mt-12 py-12 px-6">
         <div class="container mx-auto flex flex-col md:flex-row items-center gap-6">
             <div class="md:w-1/2 text-center md:text-left">
                 <h2 class="text-3xl font-bold mb-4">Introducing NOVALIE X Joy Shop</h2>
@@ -294,20 +270,7 @@
             </div>
             <div class="md:w-1/2">
                 <img src="path-to-banner-image.jpg" alt="Novalie Banner" class="rounded-lg shadow-lg">
-            </div>
+            </div> --}}
         </div>
     </section>
-    <script>
-        // Mengambil referensi tombol hamburger dan menu mobile
-        const hamburgerButton = document.getElementById("hamburgerButton");
-        const mobileMenu = document.getElementById("mobileMenu");
-    
-        // Menambahkan event listener ke tombol hamburger
-        hamburgerButton.addEventListener("click", () => {
-            // Toggle visibility menu mobile
-            mobileMenu.classList.toggle("hidden");
-        });
-    </script>
-    
-</body>
-</html>
+    @endsection
