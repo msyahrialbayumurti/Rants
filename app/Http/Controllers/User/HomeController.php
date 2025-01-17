@@ -27,4 +27,9 @@ class HomeController extends Controller
     {
         return view('pages.user.kontak');
     }
+
+    public function beranda()
+    {
+        return view('pages.user.beranda');
+    }
 }

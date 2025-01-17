@@ -7,6 +7,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\ValidationException;
+use Illuminate\Support\Facades\Auth;
 
 class RegisterController extends Controller
 {
@@ -14,6 +15,39 @@ class RegisterController extends Controller
     public function showRegister()
     {
         return view('pages.register'); // Pastikan file ada di resources/views/auth/login.blade.php
+    }
+
+    public function postRegister(Request $request)
+    {
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:users',
+            'nohp' => 'required|string|max:15',
+            'password' => 'required|string|min:6|confirmed',
+        ]);
+
+        try {
+            $user = User::create([
+                'name' => $request->name,
+                'email' => strtolower(trim($request->email)), // Normalisasi email
+                'nohp' => $request->nohp,
+                'password' => Hash::make($request->password), // Hash password
+            ]);
+
+            // Jika berhasil, redirect dengan pesan sukses
+            return redirect('/login')->with('success', 'Registrasi berhasil! Silakan login.');
+
+        } catch (\Exception $e) {
+            // Jika terjadi error, redirect kembali dengan pesan error
+            return redirect()->back()->with('error', 'Terjadi kesalahan saat registrasi. Silakan coba lagi.');
+        }
+    }
+
+    public function userlogout()
+    {
+        Auth::logout();
+        session()->flash('success', 'Berhasil logout!');
+        return redirect('/');
     }
 
     /**
@@ -29,14 +63,6 @@ class RegisterController extends Controller
                 'nohp' => 'required|string|max:15',              // Nomor HP wajib diisi
                 'password' => 'required|string|min:6|confirmed',  // Password wajib, minimal 6 karakter, dan konfirmasi
             ]);
-
-            // Membuat user baru
-            // $user = User::create([
-            //     'name' => $validatedData['name'],
-            //     'email' => $validatedData['email'],
-            //     'nohp' => $validatedData['nohp'],
-            //     'password' => Hash::make($validatedData['password']),  // Enkripsi password
-            // ]);
 
             $user = User::create([
                 'name' => $validatedData['name'],
@@ -75,4 +101,6 @@ class RegisterController extends Controller
             ], 500); // 500 Internal Server Error
         }
     }
+
+    
 }

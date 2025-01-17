@@ -10,14 +10,14 @@
                 Menghidupkan Keindahan Seni Tari Tradisional Dan Modern Indonesia
             </p>
             <div class="flex space-x-4 mt-6">
-                <a href="#" class="bg-red-700 p-3 rounded-full hover:bg-red-600 transition">
+                <a href="#" class="bg-red-700 py-2 px-3 h-10 w-10 rounded-full hover:bg-red-600 transition">
                     <i class="fa-brands fa-facebook"></i>
                 </a>
-                <a href="#" class="bg-red-700 p-3 rounded-full hover:bg-red-600 transition">
+                <a href="#" class="bg-red-700 py-2 px-3 h-10 w-10 rounded-full hover:bg-red-600 transition">
                     <i class="fa-brands fa-x-twitter"></i>
                 </a>
                 <a href="https://www.instagram.com/rants.id?igsh=MXh4bHMzNmd2Y3Q3ag=="
-                   class="bg-red-700 p-3 rounded-full hover:bg-red-600 transition">
+                   class="bg-red-700 py-2 px-3 h-10 w-10 rounded-full hover:bg-red-600 transition">
                     <i class="fa-brands fa-instagram"></i> 
                 </a>
             </div>
@@ -65,7 +65,7 @@
     <div class="mt-12 border-t border-gray-600 pt-8">
         <div class="max-w-7xl mx-auto px-6 lg:px-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 text-gray-300">
             <div class="flex items-center space-x-4">
-                <div class="bg-red-700 p-3 rounded-full">
+                <div class="bg-red-700 py-2 px-3 h-10 w-10 rounded-full">
                     <i class="fa-solid fa-envelope"></i>
                 </div>
                 <div>
@@ -74,7 +74,7 @@
                 </div>
             </div>
             <div class="flex items-center space-x-4">
-                <div class="bg-red-700 p-3 rounded-full">
+                <div class="bg-red-700 py-2 px-3 h-10 w-10 rounded-full">
                     <i class="fa-solid fa-phone"></i>
                 </div>
                 <div>
@@ -83,7 +83,7 @@
                 </div>
             </div>
             <div class="flex items-center space-x-4">
-                <div class="bg-red-700 p-3 rounded-full">
+                <div class="bg-red-700 py-2 px-3 h-10 w-10 rounded-full">
                     <i class="fa-solid fa-location-dot"></i>
                 </div>
                 <div>

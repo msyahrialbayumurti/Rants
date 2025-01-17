@@ -74,92 +74,111 @@
     <!-- Header -->
     <header class="bg-gray-100 shadow-md top-0 z-50 sticky w-full">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex items-center justify-between h-20">
-                <!-- Logo -->
-                <div class="flex-shrink-0">
-                    <a href="{{ route('index') }} ">
-                        <img class="h-12" src="{{ asset('assets/img/TransaparentRants (300 x 100 piksel).svg') }}" alt="Logo">
-                    </a>
-                </div>
-    
-                <!-- Navigation Menu -->
-                <div id="menu" class="hidden md:flex space-x-4 mx-auto font-medium">
-                    <a href="{{ route('index') }}" class="{{ Route::is('index') ? 'text-red-700 font-semibold' : 'text-gray-500' }} hover:text-red-700 transition duration-300" text-gray-500 hover:text-red-700 transition duration-300">Beranda</a>
-                    <a href="{{ route('home') }}" class="{{ Route::is('home') ? 'text-red-700 font-semibold' : 'text-gray-500' }} hover:text-red-700 transition duration-300" text-gray-500 hover:text-red-700 transition duration-300">Pesan</a>
-                    {{-- <a href="{{ route('layanan') }}" class="{{ Route::is('layanan') ? 'text-red-700 font-semibold' : 'text-gray-500' }} hover:text-red-700 transition duration-300" text-gray-500 hover:text-red-700 transition duration-300">Layanan</a> --}}
-                    {{-- <a href="{{ route('tentangkami') }}" class="{{ Route::is('tentangkami') ? 'text-red-700 font-semibold' : 'text-gray-500' }} hover:text-red-700 transition duration-300" text-gray-500 hover:text-red-700 transition duration-300">Tentang Kami</a> --}}
-                    <a href="{{ route('kontak') }}" class="{{ Route::is('kontak') ? 'text-red-700 font-semibold' : 'text-gray-500' }} hover:text-red-700 transition duration-300" text-gray-500 hover:text-red-700 transition duration-300">Kontak</a>
-                    {{-- <a href="{{ route('login') }}" class="block px-4 py-2 text-white rounded-md hover:bg-blue-600 transition duration-300" style="background: hsla(57, 99%, 50%, 1);background: linear-gradient(180deg, hsla(57, 99%, 50%, 1) 0%, hsla(9, 100%, 51%, 1) 100%);background: -moz-linear-gradient(180deg, hsla(57, 99%, 50%, 1) 0%, hsla(9, 100%, 51%, 1) 100%);background: -webkit-linear-gradient(180deg, hsla(57, 99%, 50%, 1) 0%, hsla(9, 100%, 51%, 1) 100%);filter: progid: DXImageTransform.Microsoft.gradient(startColorstr='#FEF001', endColorstr='#FF2C05', GradientType=1);max-width: 200px;margin: 0 auto;">Login</a> --}}
-                </div>
-    
-                <!-- Hamburger Menu (for screens <= 768px) -->
-                <div class="md:hidden">
-                    <button id="menu-button" class="text-gray-600 hover:text-red-700 focus:outline-none">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
-                        </svg>
-                    </button>
-                </div>
+          <div class="flex items-center justify-between h-20">
+            <!-- Logo -->
+            <div class="flex-shrink-0">
+              <a href="{{ route('index') }}">
+                <img class="h-12" src="{{ asset('assets/img/TransaparentRants (300 x 100 piksel).svg') }}" alt="Logo">
+              </a>
             </div>
-    
-            <!-- Mobile Menu -->
-            <div id="mobile-menu" class="hidden md:hidden mt-4 space-y-2 font-medium">
-                <a href="{{ route('index') }}" class="{{ Route::is('index') ? 'text-red-700 font-bold' : 'text-gray-500' }} hover:text-red-700 transition duration-300 block text-gray-500 hover:text-red-700 transition duration-300" >Beranda</a>
-                <a href="{{ route('home') }}" class="{{ Route::is('home') ? 'text-red-700 font-bold' : 'text-gray-500' }} hover:text-red-700 transition duration-300 block text-gray-500 hover:text-red-700 transition duration-300">Pesan</a>
-                {{-- <a href="{{ route('layanan') }}" class="{{ Route::is('layanan') ? 'text-red-700 font-bold' : 'text-gray-500' }} hover:text-red-700 transition duration-300 block text-gray-500 hover:text-red-700 transition duration-300">Layanan</a> --}}
-                {{-- <a href="{{ route('tentangkami') }}" class="{{ Route::is('layanan') ? 'text-red-700 font-bold' : 'text-gray-500' }} hover:text-red-700 transition duration-300 block text-gray-500 hover:text-red-700 transition duration-300">Tentang Kami</a> --}}
-                <a href="{{ route('kontak') }}" class="{{ Route::is('layanan') ? 'text-red-700 font-bold' : 'text-gray-500' }} hover:text-red-700 transition duration-300 block text-gray-500 hover:text-red-700 transition duration-300">Kontak</a>
-                {{-- <a href="{{ route('login') }}" class="block px-4 py-2 text-white rounded-md hover:bg-blue-600 transition duration-300" style="background: hsla(57, 99%, 50%, 1);background: linear-gradient(180deg, hsla(57, 99%, 50%, 1) 0%, hsla(9, 100%, 51%, 1) 100%);background: -moz-linear-gradient(180deg, hsla(57, 99%, 50%, 1) 0%, hsla(9, 100%, 51%, 1) 100%);background: -webkit-linear-gradient(180deg, hsla(57, 99%, 50%, 1) 0%, hsla(9, 100%, 51%, 1) 100%);filter: progid: DXImageTransform.Microsoft.gradient(startColorstr='#FEF001', endColorstr='#FF2C05', GradientType=1);max-width: 200px;margin: 0 auto;">Login</a> --}}
+      
+            <!-- Navigation Menu -->
+            <div id="menu" class="hidden md:flex space-x-4 mx-auto font-medium">
+              <a href="{{ route('index') }}" class="{{ Route::is('index') ? 'text-red-700 font-semibold' : 'text-gray-500' }} hover:text-red-700 transition duration-300">Beranda</a>
+              <a href="{{ route('home') }}" class="{{ Route::is('home') ? 'text-red-700 font-semibold' : 'text-gray-500' }} hover:text-red-700 transition duration-300">Layanan</a>
+              <a href="{{ route('kontak') }}" class="{{ Route::is('kontak') ? 'text-red-700 font-semibold' : 'text-gray-500' }} hover:text-red-700 transition duration-300">Kontak</a>
             </div>
+      
+            <!-- Hamburger Menu (for screens <= 768px) -->
+            <div class="md:hidden">
+              <button id="menu-button" class="text-gray-600 hover:text-red-700 focus:outline-none flex items-center justify-center">
+                <!-- Hamburger Icon -->
+                <div id="icon-container" class="relative w-6 h-6">
+                  <span class="block w-full rounded-full h-1 bg-gray-600 transform transition duration-300 ease-in-out origin-center"></span>
+                  <span class="block w-full rounded-full h-1 bg-gray-600 mt-1 transform transition duration-300 ease-in-out origin-center"></span>
+                  <span class="block w-full rounded-full h-1 bg-gray-600 mt-1 transform transition duration-300 ease-in-out origin-center"></span>
+                </div>
+              </button>
+            </div>
+          </div>
+      
+          <!-- Mobile Menu -->
+          <div id="mobile-menu" class="hidden md:hidden mt-4 space-y-2 font-medium transform scale-y-0 opacity-0 origin-top transition-all duration-300 ease-in-out">
+                <a href="{{ route('index') }}" class="{{ Route::is('index') ? 'text-red-700 ' : 'text-gray-500' }} hover:text-red-700 transition duration-300 block py-2 px-3">Beranda</a>
+                <a href="{{ route('home') }}" class="{{ Route::is('home') ? 'text-red-700 py-2 px-3' : 'text-gray-500' }} hover:text-red-700 transition duration-300 block py-2 px-3">Layanan</a>
+                <a href="{{ route('kontak') }}" class="{{ Route::is('kontak') ? 'text-red-700 py-2 px-3' : 'text-gray-500' }} hover:text-red-700 transition duration-300 block pt-2 pb-6 px-3">Kontak</a>
+          </div>
+
         </div>
-    </header>
-    
-    <script>
-        // JavaScript for toggling the mobile menu
+      </header>
+      
+      <script>
+        // JavaScript for toggling the mobile menu and animating the hamburger icon
         const menuButton = document.getElementById('menu-button');
         const mobileMenu = document.getElementById('mobile-menu');
-    
+        const iconContainer = document.getElementById('icon-container');
+        const lines = iconContainer.querySelectorAll('span');
+
         menuButton.addEventListener('click', () => {
-            mobileMenu.classList.toggle('hidden');
+        // Animate mobile menu appearance/disappearance
+        if (mobileMenu.classList.contains('hidden')) {
+            mobileMenu.classList.remove('hidden');
+            setTimeout(() => {
+            mobileMenu.classList.add('scale-y-100', 'opacity-100');
+            mobileMenu.classList.remove('scale-y-0', 'opacity-0');
+            }, 10); // Small delay to allow transition
+        } else {
+            mobileMenu.classList.add('scale-y-0', 'opacity-0');
+            mobileMenu.classList.remove('scale-y-100', 'opacity-100');
+            setTimeout(() => {
+            mobileMenu.classList.add('hidden');
+            }, 300); // Match the duration of the transition
+        }
+
+        // Animate hamburger icon to X and back
+        lines[0].classList.toggle('rotate-45');
+        lines[0].classList.toggle('translate-y-2');
+
+        lines[1].classList.toggle('opacity-0');
+
+        lines[2].classList.toggle('-rotate-45');
+        lines[2].classList.toggle('-translate-y-2');
         });
-    </script>
+      </script>
+      
 
 
 <button id="backToTop" 
-class="fixed bottom-6 right-6 bg-red-600 w-12 h-12 text-white rounded-full p-0  shadow-md shadow-red-700 hover:bg-red-700 focus:outline-none hidden transition duration-300"><i class="fa-solid fa-arrow-up"></i>
+class="fixed bottom-6 right-6 bg-red-600 w-12 h-12 text-white rounded-full p-0  shadow-md shadow-red-700 hover:bg-red-700 focus:outline-none hidden transition duration-300 z-10"><i class="fa-solid fa-arrow-up"></i>
 </button>
 
-<!-- Inline Script -->
-<script>
-// Select the Back to Top button
-const backToTopButton = document.getElementById('backToTop');
+    <!-- Inline Script -->
+    <script>
+    // Select the Back to Top button
+    const backToTopButton = document.getElementById('backToTop');
 
-// Show/hide button on scroll
-window.addEventListener('scroll', () => {
-    if (window.scrollY > 300) {
-        backToTopButton.classList.remove('hidden');
-    } else {
-        backToTopButton.classList.add('hidden');
-    }
-});
-
-// Scroll to top functionality
-backToTopButton.addEventListener('click', () => {
-    window.scrollTo({
-        top: 0,
-        behavior: 'smooth',
+    // Show/hide button on scroll
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 300) {
+            backToTopButton.classList.remove('hidden');
+        } else {
+            backToTopButton.classList.add('hidden');
+        }
     });
-});
-</script>
-    
-    
+
+    // Scroll to top functionality
+    backToTopButton.addEventListener('click', () => {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth',
+        });
+    });
+    </script>
 
     <!-- Content Section (just for demo) -->
     <div data-aos="fade-up"
      data-aos-anchor-placement="center-bottom"
      data-aos-duration="1000">
-
-    
 
     <section class="relative w-full h-auto m-0 p-0">
         <!-- Container untuk Banner -->
@@ -201,7 +220,6 @@ backToTopButton.addEventListener('click', () => {
         <div class="text-center">
             <span class="bg-pink-200 text-red-600 text-sm font-medium px-4 py-1 rounded-full">
                 Our Advantages
-
             </span>
             <h2 class="mt-4 text-3xl font-bold text-gray-900 sm:text-4xl">
                 Kenapa pilih <br /> <span class="text-red-600"> RANTS</span> 
@@ -459,14 +477,14 @@ backToTopButton.addEventListener('click', () => {
                         injected humour or words. --}}
                     </p>
                     <div class="flex space-x-4 mt-6">
-                        <a href="#" class="bg-red-700 p-3 rounded-full hover:bg-red-600 transition">
+                        <a href="#" class="bg-red-700 py-2 px-3 h-10 w-10 rounded-full hover:bg-red-600 transition">
                             <i class="fa-brands fa-facebook"></i>
                         </a>
-                        <a href="#" class="bg-red-700 p-3 rounded-full hover:bg-red-600 transition">
+                        <a href="#" class="bg-red-700 py-2 px-3 h-10 w-10 rounded-full hover:bg-red-600 transition">
                             <i class="fa-brands fa-x-twitter"></i>
                         </a>
                         <a href="https://www.instagram.com/rants.id?igsh=MXh4bHMzNmd2Y3Q3ag=="
-                           class="bg-red-700 p-3 rounded-full hover:bg-red-600 transition">
+                           class="bg-red-700 py-2 px-3 h-10 w-10 rounded-full hover:bg-red-600 transition">
                             <i class="fa-brands fa-instagram"></i> 
                         </a>
                     </div>
@@ -513,7 +531,7 @@ backToTopButton.addEventListener('click', () => {
             <div class="mt-12 border-t border-gray-600 pt-8">
                 <div class="max-w-7xl mx-auto px-6 lg:px-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 text-gray-300">
                     <div class="flex items-center space-x-4">
-                        <div class="bg-red-700 p-3 rounded-full">
+                        <div class="bg-red-700 py-2 px-3 h-10 w-10 rounded-full">
                             <i class="fa-solid fa-envelope"></i>
                         </div>
                         <div>
@@ -522,7 +540,7 @@ backToTopButton.addEventListener('click', () => {
                         </div>
                     </div>
                     <div class="flex items-center space-x-4">
-                        <div class="bg-red-700 p-3 rounded-full">
+                        <div class="bg-red-700 py-2 px-3 h-10 w-10 rounded-full">
                             <i class="fa-solid fa-phone"></i>
                         </div>
                         <div>
@@ -531,7 +549,7 @@ backToTopButton.addEventListener('click', () => {
                         </div>
                     </div>
                     <div class="flex items-center space-x-4">
-                        <div class="bg-red-700 p-3 rounded-full">
+                        <div class="bg-red-700 py-2 px-3 h-10 w-10 rounded-full">
                             <i class="fa-solid fa-location-dot"></i>
                         </div>
                         <div>

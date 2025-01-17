@@ -25,12 +25,12 @@
         </p>
         
       </div>
-      <form method="POST" action="{{ route('login') }}">
-        @csrf
+      <form method="POST" action="{{ route('post-login') }}">
+        {{ csrf_field() }}
         <div class="mb-4">
           <label class="block">
             <span class="block text-sm font-medium text-slate-600">Email</span>
-            <input type="email" placeholder="example@mail.com" class="peer w-full px-3 py-2 border border-slate-200 rounded-md focus:outline-none focus:ring-1 focus:ring-slate-600 focus:border-transparent invalid:border-slate-600 invalid:text-slate-600"/>
+            <input type="email" name="email" placeholder="example@mail.com" class="peer w-full px-3 py-2 border border-slate-200 rounded-md focus:outline-none focus:ring-1 focus:ring-slate-600 focus:border-transparent invalid:border-slate-600 invalid:text-slate-600"/>
             <p class="mt-2 invisible peer-invalid:visible text-pink-600 text-sm">
               Pastikan email yang anda masukkan valid.
             </p>
@@ -49,6 +49,16 @@
             </svg>
           </div>
         </div>
+        @if ($errors->any())
+            <div class="text-red-500 text-sm">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+
         <button type="submit" class="w-full bg-gradient-to-r from-red-500 to-orange-500 text-white py-2 rounded mt-4 shadow-md font-bold">
           SIGN IN
         </button>

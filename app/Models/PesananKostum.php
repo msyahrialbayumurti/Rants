@@ -13,8 +13,8 @@ class PesananKostum extends Model
     protected $fillable = [
     'kosta_id',
     'Users_id',
-    'waktu_pemakaian_mulai',
-    'waktu_pemakaian_selesai',
+    'tanggal_pemakaian_mulai',
+    'tanggal_pemakaian_selesai',
     'total_harga',
     'status_pesanan',
 ];

@@ -53,6 +53,17 @@ Route::prefix('makeup')->group(function () {
     // Route::delete('/{id}', [MakeupController::class, 'destroy']); // Menghapus makeup
 });
 
+
+Route::middleware(['auth:sanctum'])->group(function () {
+    Route::get('/profile', [UserController::class, 'showProfile']);
+    Route::put('/profile/update', [UserController::class, 'updateProfile']);
+    Route::post('/logout', [AuthController::class, 'logout']);
+
+});
+
+// Route::middleware('auth:api')->get('profil/{id}', [UserController::class, 'showProfile']);
+// Route::get('profil/{id}', [UserController::class, 'showProfile']);
+
 //PenyewaanJasaTari
 Route::prefix('tari')->group(function () {
     Route::get('/all', [PenyewaanJasaTariController::class, 'index']); // Mendapatkan semua data
@@ -63,6 +74,7 @@ Route::prefix('tari')->group(function () {
 });
 
 //PesananKostum
+Route::post('pesanan-kostum', [PesananKostumController::class, 'createOrder']);
 Route::get('pesanan-kostum', [PesananKostumController::class, 'index']);
 Route::get('pesanan-kostum/{id}', [PesananKostumController::class, 'show']);
 

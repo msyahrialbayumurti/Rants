@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 
 class AuthController extends Controller
@@ -14,6 +15,35 @@ class AuthController extends Controller
     {
         return view('pages.login'); // Pastikan file ada di resources/views/auth/login.blade.php
     }
+
+    public function userLogout(){
+        Auth::logout();
+        return redirect('/login');
+    }
+
+    public function loginWeb(Request $request)
+    {
+        // Validasi input dari form login
+        $request->validate([
+            'email' => 'required|string|email',    // Email wajib diisi dan harus valid
+            'password' => 'required|string',      // Password wajib diisi
+        ]);
+
+        // Cek kredensial login
+        if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
+            // Regenerate session untuk keamanan
+            $request->session()->regenerate();
+
+            // Redirect ke dashboard atau halaman utama setelah login berhasil
+            return redirect()->intended('/beranda')->with('success', 'Login berhasil! Selamat datang.');
+        }
+
+        // Jika login gagal
+        return back()->withErrors([
+            'email' => 'Email atau password salah.',
+        ])->onlyInput('email'); // Input email akan dipertahankan
+    }
+
 
     /**
      * Login user dan generate token.
@@ -71,7 +101,7 @@ class AuthController extends Controller
     public function logout(Request $request)
     {
         $request->user()->tokens()->delete();
-
+ 
         return response()->json([
             'status' => 'success',
             'message' => 'Logout berhasil',

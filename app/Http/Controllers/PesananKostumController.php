@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
-use App\Http\Resources\PesananKostumResource; // Resource untuk API
+use App\Http\Resources\PesananKostumResource; 
 use App\Models\PesananKostum;
 use Illuminate\Http\Request;
 
@@ -13,10 +13,10 @@ class PesananKostumController extends Controller
     public function createOrder(Request $request)
     {
         $validatedData = $request->validate([
-            'kostums_id' => 'required|exists:kostums,id',
+            'kosta_id' => 'required|exists:kosta,id',
             'Users_id' => 'required|exists:users,id',
-            'waktu_pemakaian_mulai' => 'required|date|date_format:Y-m-d H:i:s',
-            'waktu_pemakaian_selesai' => 'required|date|date_format:Y-m-d H:i:s',
+            'tanggal_pemakaian_mulai' => 'required|date|date_format:Y-m-d',
+            'tanggal_pemakaian_selesai' => 'required|date|date_format:Y-m-d',
             'total_harga' => 'required|numeric',
             'status_pesanan' => 'required|string',
         ]);
@@ -25,10 +25,10 @@ class PesananKostumController extends Controller
         
         // Sesuaikan dengan nama field yang ada di model Anda
         $PesananKostum = PesananKostum::create([
-            'kostums_id' => $validatedData['kostums_id'],  // Sesuaikan dengan 'kostums_id'
+            'kosta_id' => $validatedData['kosta_id'],  // Sesuaikan dengan 'kostums_id'
             'Users_id' => $validatedData['Users_id'], // Sesuaikan dengan 'Users_id'
-            'waktu_pemakaian_mulai' => $validatedData['tanggal_pesanan'], // Menggunakan 'waktu_pemakaian_mulai' di model
-            'waktu_pemakaian_selesai' => $validatedData['tanggal_pesanan'], // Anda bisa menyesuaikan jika ada waktu selesai atau lainnya
+            'tanggal_pemakaian_mulai' => $validatedData['tanggal_pemakaian_mulai'], // Menggunakan 'waktu_pemakaian_mulai' di model
+            'tanggal_pemakaian_selesai' => $validatedData['tanggal_pemakaian_selesai'], // Anda bisa menyesuaikan jika ada waktu selesai atau lainnya
             'total_harga' => $validatedData['total_harga'],
             'status_pesanan' => $validatedData['status_pesanan'],
         ]);

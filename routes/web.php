@@ -11,6 +11,13 @@ Route::get('/', function () {
     return view('welcome');
 })->name('index');
 
+// Route untuk halaman login
+Route::get('/login', [AuthController::class, 'showLogin'])->name('login');
+Route::post('/post-login', [AuthController::class, 'loginWeb'])->name('post-login');
+Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
+// Route untuk halaman register &  proses register  
+Route::get('/register', [RegisterController::class, 'showRegister'])->name('register');
+Route::post('/postregister', [RegisterController::class, 'postRegister'])->name('post_register');
 
 Route::get('/kontak', [HomeController::class, 'showKontak'])->name('kontak');
 
@@ -20,14 +27,4 @@ Route::get('/home', [HomeController::class, 'showHome'])->name('home');
 
 Route::get('/tentang-kami', [HomeController::class, 'showAboutme'])->name('tentangkami');
 
-// Route untuk halaman login
-Route::get('/login', [AuthController::class, 'showLogin'])->name('login');
-
-// Route untuk halaman register
-Route::get('/register', [RegisterController::class, 'showRegister'])->name('register');
-
-// Route untuk proses register
-Route::post('/post-register', [AuthController::class, 'post_register'])->name('post.register');
-
-// Route untuk proses login
-Route::post('/post-login', [AuthController::class, 'login'])->name('post.login');
+Route::get('/beranda', [HomeController::class, 'beranda'])->name('beranda');
