@@ -1,102 +1,112 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    @vite('resources/css/app.css')
     <title>Login</title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="bg-gray-50 flex items-center justify-center h-screen">
 
-    @include('layout.user.nav')
-    
-    <div class="bg-white p-8 rounded-lg shadow-lg w-full max-w-md">
-        <h1 class="text-2xl font-bold text-gray-600 text-center mb-6">Login</h1>
-        <p>Silakan masuk untuk terlebih dahulu. Belum punya akun? <a class="text-sm text-blue-500 hover:underline" href="{{ route('register') }}">Daftar</a></p>
-        <form method="POST" action="">
-            @csrf
-            <!-- Email -->
-            <div class="mb-4">
-                <label for="email" class="block text-gray-400">Email</label>
-                <input type="email" name="email" id="email" 
-                       class="w-full px-4 py-2 mt-2 bg-white text-gray-700 rounded outline outline-gray-300 focus:outline-blue-500 focus:ring-2 focus:ring-blue-500" 
-                       placeholder="Masukan email" required>
-                @error('email')
-                    <span class="text-red-500 text-sm">{{ $message }}</span>
-                @enderror
+<body class="h-screen bg-gradient-to-br from-red-500 via-orange-500 to-yellow-500 flex items-center justify-center">
+    <div class="w-full max-w-5xl bg-white shadow-lg rounded-lg overflow-hidden flex">
+        <!-- Left Section -->
+        <div class="hidden sm:block w-1/2 bg-cover bg-center"
+            style="background-image: url('https://source.unsplash.com/600x800/?technology,design');">
+            <div class="flex flex-col items-center justify-center h-full bg-black bg-opacity-40 text-white p-8">
+                <h2 class="text-5xl font-bold mb-4">Selamat Datang</h2>
+                <p class="text-center text-lg leading-relaxed">
+                    Bergabunglah dengan kami untuk menikmati berbagai layanan terbaik. Masuk sekarang dan mulailah
+                    perjalanan Anda!
+                </p>
             </div>
-            <!-- Password -->
-            <div class="mb-4 relative">
-                <label for="password" class="block text-gray-400">Password</label>
-                <div class="relative">
-                    <input type="password" name="password" id="password" 
-                           class="w-full px-4 py-2 mt-2 bg-white text-gray-700 rounded outline outline-gray-300 focus:outline-blue-500 focus:ring-2 focus:ring-blue-500" 
-                           placeholder="Masukkan password" required>
-                    <!-- Eye Icon untuk Toggle Password -->
-                    <button type="button" onclick="togglePassword()" 
-                            class="absolute right-3 top-[60%] transform -translate-y-1/2 focus:outline-none">
-                        <!-- Ikon default: Mata Tertutup -->
-                        <svg id="eyeIconClosed" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-500 hover:text-blue-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.98 8.268a10.97 10.97 0 00-1.622 3.732A10.97 10.97 0 0012 18c3.866 0 7.24-2.194 9.013-5.414m.465-3.266a10.97 10.97 0 00-9.478-5.477M12 6v1m0 10v1m2.488-6.512a3 3 0 11-4.976 0" />
-                            <!-- Garis Miring pada Mata Tertutup -->
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4L20 20" stroke="gray" stroke-opacity="0.7"/>
-                        </svg>
-                        <!-- Ikon alternatif: Mata Terbuka -->
-                        <svg id="eyeIconOpen" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-500 hover:text-blue-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" style="display: none;">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
-                                  d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
-                                  d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.543 7-.155.532-.355 1.046-.598 1.539M12 19c-4.478 0-8.268-2.943-9.543-7 .155-.532.355-1.046.598-1.539" />
-                        </svg>
-                    </button>
+        </div>
+
+        <!-- Right Section -->
+        <div class="w-full sm:w-1/2 p-10">
+            <div class="text-center mb-8">
+                <img src="{{ asset('assets/img/logo.png') }}" alt="Logo" class="h-20 mx-auto">
+                <h2 class="text-3xl font-bold text-gray-800 mt-6">Masuk ke Akun Anda</h2>
+                <p class="text-gray-600 mt-2">Silakan masuk untuk melanjutkan ke layanan kami</p>
+            </div>
+
+            <!-- Form Login -->
+            <form method="POST" action="{{ route('login') }}">
+                @csrf
+                <!-- Email -->
+                <div class="mb-6">
+                    <label for="email" class="block text-gray-700 text-sm font-medium mb-2">Email</label>
+                    <input id="email" type="email" name="email" value="{{ old('email') }}" required autofocus
+                        placeholder="example@mail.com"
+                        class="w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-orange-500">
+                    @error('email')
+                    <span class="text-sm text-red-500 mt-1">{{ $message }}</span>
+                    @enderror
                 </div>
-                
-                @error('password')
-                    <span class="text-red-500 text-sm">{{ $message }}</span>
-                @enderror
+
+                <!-- Password -->
+                <div class="mb-6">
+                    <label for="password" class="block text-gray-700 text-sm font-medium mb-2">Password</label>
+                    <div class="relative">
+                        <input id="password" type="password" name="password" required placeholder="********"
+                            class="w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-orange-500">
+                        <button type="button" onclick="togglePassword()"
+                            class="absolute inset-y-0 right-0 px-3 text-gray-500 hover:text-orange-500">
+                            <svg id="toggle-password-icon" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                viewBox="0 0 24 24" stroke="currentColor" class="h-6 w-6">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-.708 2.757-3.39 5-6.648 5-3.259 0-5.94-2.243-6.648-5z" />
+                            </svg>
+                        </button>
+                    </div>
+                    @error('password')
+                    <span class="text-sm text-red-500 mt-1">{{ $message }}</span>
+                    @enderror
+                </div>
+
+                <!-- Submit -->
+                <button type="submit"
+                    class="w-full bg-gradient-to-r from-red-500 via-orange-500 to-yellow-500 text-white py-3 rounded-lg shadow-lg font-semibold hover:from-red-600 hover:via-orange-600 hover:to-yellow-600">
+                    Login
+                </button>
+
+                <!-- Links -->
+                <div class="flex justify-between items-center mt-6 text-sm text-gray-500">
+                    <a href="{{ route('password.request') }}" class="hover:underline">Lupa Password?</a>
+                    <a href="{{ route('register') }}" class="text-orange-500 hover:underline">Daftar Akun</a>
+                </div>
+            </form>
+
+            <!-- Social Login -->
+            <div class="text-center mt-8">
+                <p class="text-gray-600">Atau masuk dengan</p>
+                <div class="flex justify-center gap-6 mt-4">
+                    <a href="#" class="text-blue-600 hover:text-blue-700">
+                        <i class="fab fa-facebook h-6 w-6"></i>
+                    </a>
+                    <a href="#" class="text-red-500 hover:text-red-600">
+                        <i class="fab fa-google h-6 w-6"></i>
+                    </a>
+                </div>
             </div>
-            <!-- Remember me -->
-            <div class="flex items-center justify-between mb-6">
-                <label class="flex items-center text-gray-400">
-                    <input type="checkbox" class="form-checkbox text-blue-500" name="remember">
-                    <span class="ml-2">Remember me</span>
-                </label>
-                <a href="#" class="text-sm text-blue-500 hover:underline">Forgot password?</a>
-            </div>
-            <!-- Submit Button -->
-            <button type="submit" 
-                    class="w-full bg-blue-500 text-white py-2 rounded hover:bg-blue-600 transition duration-300">
-                Sign in to your account
-            </button>
-        </form>
-        <!-- Social Login -->
-        <div class="mt-6">
-            <p class="text-gray-400 text-center mt-auto mb-2">or</p>
-            <button class="w-full bg-white text-balack py-2 mb-3 flex items-center justify-center rounded hover:bg-gray-600rounded outline outline-gray-300 transition duration-300">
-                <img src="{{ asset('assets/img/google.png') }}" class="h-5 mr-2"> 
-                Sign in with Google
-            </button>
         </div>
     </div>
-    
-    <!-- Script untuk Toggle Password -->
+
     <script>
-        function togglePassword() {
-            const passwordInput = document.getElementById('password');
-            const eyeIconClosed = document.getElementById('eyeIconClosed');
-            const eyeIconOpen = document.getElementById('eyeIconOpen');
-    
-            if (passwordInput.type === 'password') {
-                passwordInput.type = 'text';
-                eyeIconClosed.style.display = 'none';
-                eyeIconOpen.style.display = 'block';
-            } else {
-                passwordInput.type = 'password';
-                eyeIconClosed.style.display = 'block';
-                eyeIconOpen.style.display = 'none';
-            }
+    function togglePassword() {
+        const passwordField = document.getElementById('password');
+        const icon = document.getElementById('toggle-password-icon');
+
+        if (passwordField.type === 'password') {
+            passwordField.type = 'text';
+        } else {
+            passwordField.type = 'password';
         }
+    }
     </script>
-    
 </body>
+
 </html>

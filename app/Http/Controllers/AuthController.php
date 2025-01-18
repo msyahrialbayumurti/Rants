@@ -43,14 +43,14 @@ class AuthController extends Controller
         if (!$user) {
             Log::warning('User tidak ditemukan:', ['email' => $request->email]);
         }
-        
+
         if (!Hash::check($request->password, $user->password)) {
             Log::warning('Password salah:', [
                 'input_password' => $request->password,
                 'hashed_password' => $user->password
             ]);
         }
-        
+
 
         // Buat token menggunakan Sanctum
         $token = $user->createToken('API Token')->plainTextToken;

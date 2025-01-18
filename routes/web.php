@@ -11,8 +11,19 @@ Route::get('/', function () {
     return view('welcome');
 })->name('index');
 
+Route::get('/kontak', [HomeController::class, 'showKontak'])->name('kontak');
+
+Route::get('/layanan', [HomeController::class, 'showLayanan'])->name('layanan');
 
 Route::get('/home', [HomeController::class, 'showHome'])->name('home');
+
+Route::get('/tentang-kami', [HomeController::class, 'showAboutme'])->name('tentangkami');
+
+Route::get('/riwayat', [HomeController::class, 'showRiwayat'])->name('riwayat');
+
+Route::get('/profil', [HomeController::class, 'showProfil'])->name('profil');
+Route::get('/notifikasi', [HomeController::class, 'showNotifikasi'])->name('notifikasi');
+
 
 // Route untuk halaman login
 Route::get('/login', [AuthController::class, 'showLogin'])->name('login');
@@ -25,3 +36,5 @@ Route::post('/post-register', [AuthController::class, 'post_register'])->name('p
 
 // Route untuk proses login
 Route::post('/post-login', [AuthController::class, 'login'])->name('post.login');
+
+Route::get('/password/reset', [AuthController::class, 'showResetPassword'])->name('password.request');

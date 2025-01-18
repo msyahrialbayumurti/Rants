@@ -1,142 +1,134 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
+    @vite('resources/css/app.css')
+    <title>Register</title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="bg-gray-50 flex items-center justify-center h-screen">
-    
-    <div class="bg-white p-8 rounded-lg shadow-lg w-full max-w-md">
-        <h1 class="text-2xl font-bold text-gray-600 text-center mb-6">Register</h1>
-        <form method="POST" action="{{ route('login') }}">
-            @csrf
 
-        
+<body class="bg-gradient-to-br from-red-500 via-orange-500 to-yellow-500 flex items-center justify-center min-h-screen">
 
-            <div class="mb-2">
-                <label for="nama" class="block text-gray-400">Nama</label>
-                <input type="username" name="username" id="username" 
-                       class="w-full h-3/4 px-4 py-2 mt-2 bg-white text-gray-700 rounded outline outline-gray-300 focus:outline-blue-500 focus:ring-2 focus:ring-blue-500" 
-                       placeholder="Masukan nama lengkap" required>
-                @error('username')
-                    <span class="text-red-500 text-sm">{{ $message }}</span>
-                @enderror
-            </div>
-            <!-- Email -->
-            <div class="mb-2">
-                <label for="email" class="block text-gray-400">Email</label>
-                <input type="email" name="email" id="email" 
-                       class="w-full h-3/4 px-4 py-2 mt-2 bg-white text-gray-700 rounded outline outline-gray-300 focus:outline-blue-500 focus:ring-2 focus:ring-blue-500" 
-                       placeholder="Masukan email" required>
-                @error('email')
-                    <span class="text-red-500 text-sm">{{ $message }}</span>
-                @enderror
+    <div class="w-full max-w-5xl bg-white shadow-lg rounded-lg overflow-hidden flex flex-col sm:flex-row">
+        <!-- Left Section (Form Register) -->
+        <div class="w-full sm:w-1/2 p-8">
+            <div class="text-center mb-6">
+                <!-- Logo yang sudah diresize -->
+                <img src="{{ asset('assets/img/logo.png') }}" alt="Logo" class="h-16 mx-auto mb-3">
+                <h2 class="text-2xl font-bold text-gray-800 mt-4">Daftar Akun Baru</h2>
+                <p class="text-gray-600 mt-1">Isi form berikut untuk membuat akun baru</p>
             </div>
 
-            <div class="mb-2">
-                <label for="no hp" class="block text-gray-400">No hp</label>
-                <input type="no hp" name="no hp" id="no hp" 
-                       class="w-full h-3/4 px-4 py-2 mt-2 bg-white text-gray-700 rounded outline outline-gray-300 focus:outline-blue-500 focus:ring-2 focus:ring-blue-500" 
-                       placeholder="Masukkan No hp" required>
-                @error('no hp')
-                    <span class="text-red-500 text-sm">{{ $message }}</span>
-                @enderror
-            </div>
-            <!-- Password -->
-            <div class="mb-8 flex space-x-4">
-                <!-- Field Password 1 -->
-                <div class="relative w-1/2">
-                    <label for="password1" class="block text-gray-400">Password</label>
-                    <div class="relative">
-                        <input type="password" name="password1" id="password1" 
-                               class="w-full h-3/4 px-4 py-2 mt-2 bg-white text-gray-700 rounded outline outline-gray-300 focus:outline-blue-500 focus:ring-2 focus:ring-blue-500" 
-                               placeholder="Masukkan password" required>
-                        <!-- Eye Icon untuk Toggle Password -->
-                        <button type="button" onclick="togglePassword('password1', 'eyeIconClosed1', 'eyeIconOpen1')" 
-                                class="absolute right-1 top-[65%] transform -translate-y-1/2 focus:outline-none">
-                            <!-- Ikon default: Mata Tertutup -->
-                            <svg id="eyeIconClosed1" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-500 hover:text-blue-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.98 8.268a10.97 10.97 0 00-1.622 3.732A10.97 10.97 0 0012 18c3.866 0 7.24-2.194 9.013-5.414m.465-3.266a10.97 10.97 0 00-9.478-5.477M12 6v1m0 10v1m2.488-6.512a3 3 0 11-4.976 0" />
-                                <!-- Garis Miring pada Mata Tertutup -->
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4L20 20" stroke="gray" stroke-opacity="0.7"/>
-                            </svg>
-                            <!-- Ikon alternatif: Mata Terbuka -->
-                            <svg id="eyeIconOpen1" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-500 hover:text-blue-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" style="display: none;">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
-                                      d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
-                                      d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.543 7-.155.532-.355 1.046-.598 1.539M12 19c-4.478 0-8.268-2.943-9.543-7 .155-.532.355-1.046.598-1.539" />
+            <!-- Form Register -->
+            <form method="POST" action="{{ route('register') }}">
+                @csrf
+                <!-- Name -->
+                <div class="mb-4">
+                    <label for="username" class="block text-gray-700 text-sm font-medium mb-2">Nama</label>
+                    <input id="username" type="text" name="username" value="{{ old('username') }}" required autofocus
+                        placeholder="Nama lengkap"
+                        class="w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-orange-500">
+                    @error('username')
+                    <span class="text-sm text-red-500 mt-1">{{ $message }}</span>
+                    @enderror
+                </div>
+
+                <!-- Email -->
+                <div class="mb-4">
+                    <label for="email" class="block text-gray-700 text-sm font-medium mb-2">Email</label>
+                    <input id="email" type="email" name="email" value="{{ old('email') }}" required
+                        placeholder="example@mail.com"
+                        class="w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-orange-500">
+                    @error('email')
+                    <span class="text-sm text-red-500 mt-1">{{ $message }}</span>
+                    @enderror
+                </div>
+
+                <!-- No HP -->
+                <div class="mb-4">
+                    <label for="no_hp" class="block text-gray-700 text-sm font-medium mb-2">No HP</label>
+                    <input id="no_hp" type="text" name="no_hp" value="{{ old('no_hp') }}" required
+                        placeholder="081234567890"
+                        class="w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-orange-500">
+                    @error('no_hp')
+                    <span class="text-sm text-red-500 mt-1">{{ $message }}</span>
+                    @enderror
+                </div>
+
+                <!-- Password, Confirm Password -->
+                <div class="mb-4 flex flex-col sm:flex-row sm:space-x-4">
+                    <!-- Password -->
+                    <div class="w-full sm:w-1/2 relative">
+                        <label for="password" class="block text-gray-700 text-sm font-medium mb-2">Password</label>
+                        <input id="password" type="password" name="password" required
+                            class="w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-orange-500">
+                        <button type="button" onclick="togglePassword('password', 'password-icon')"
+                            class="absolute inset-y-0 right-2 px-2 text-gray-500 hover:text-orange-500">
+                            <svg id="password-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                stroke="currentColor" class="h-5 w-5">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-.708 2.757-3.39 5-6.648 5-3.259 0-5.94-2.243-6.648-5z" />
                             </svg>
                         </button>
+                        @error('password')
+                        <span class="text-sm text-red-500 mt-1">{{ $message }}</span>
+                        @enderror
+                    </div>
+
+                    <!-- Confirm Password -->
+                    <div class="w-full sm:w-1/2">
+                        <label for="password_confirmation"
+                            class="block text-gray-700 text-sm font-medium mb-2">Konfirmasi Password</label>
+                        <input id="password_confirmation" type="password" name="password_confirmation" required
+                            class="w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-orange-500">
+                        @error('password_confirmation')
+                        <span class="text-sm text-red-500 mt-1">{{ $message }}</span>
+                        @enderror
                     </div>
                 </div>
-            
-                <!-- Field Password 2 -->
-                <div class="relative w-1/2">
-                    <label for="password2" class="block text-gray-400">Confirm Password</label>
-                    <div class="relative">
-                        <input type="confirm password" name="confirm password" id="confirm password" 
-                               class="w-full h-3/4 px-4 py-2 mt-2 bg-white text-gray-700 rounded outline outline-gray-300 focus:outline-blue-500 focus:ring-2 focus:ring-blue-500" 
-                               placeholder="confirm password" required>
-                        <!-- Eye Icon untuk Toggle Password -->
-                        <button type="button" onclick="togglePassword('password2', 'eyeIconClosed2', 'eyeIconOpen2')" 
-                                class="absolute right-1 top-[65%] transform -translate-y-1/2 focus:outline-none">
-                            <!-- Ikon default: Mata Tertutup -->
-                            <svg id="eyeIconClosed2" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-500 hover:text-blue-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.98 8.268a10.97 10.97 0 00-1.622 3.732A10.97 10.97 0 0012 18c3.866 0 7.24-2.194 9.013-5.414m.465-3.266a10.97 10.97 0 00-9.478-5.477M12 6v1m0 10v1m2.488-6.512a3 3 0 11-4.976 0" />
-                                <!-- Garis Miring pada Mata Tertutup -->
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4L20 20" stroke="gray" stroke-opacity="0.7"/>
-                            </svg>
-                            <!-- Ikon alternatif: Mata Terbuka -->
-                            <svg id="eyeIconOpen2" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-500 hover:text-blue-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" style="display: none;">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
-                                      d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
-                                      d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.543 7-.155.532-.355 1.046-.598 1.539M12 19c-4.478 0-8.268-2.943-9.543-7 .155-.532.355-1.046.598-1.539" />
-                            </svg>
-                        </button>
-                    </div>
+
+                <!-- Submit -->
+                <button type="submit"
+                    class="w-full bg-gradient-to-r from-red-500 via-orange-500 to-yellow-500 text-white py-2 rounded-lg shadow-lg font-semibold hover:from-red-600 hover:via-orange-600 hover:to-yellow-600">
+                    Daftar
+                </button>
+
+                <!-- Links -->
+                <div class="flex justify-between items-center mt-4 text-sm text-gray-500">
+                    <a href="{{ route('login') }}" class="text-orange-500 hover:underline">Sudah punya akun? Masuk</a>
                 </div>
+            </form>
+        </div>
+
+        <!-- Right Section (Image) -->
+        <div class="hidden sm:block w-1/2 bg-cover bg-center"
+            style="background-image: url('https://source.unsplash.com/600x800/?technology,design');">
+            <div class="flex flex-col items-center justify-center h-full bg-black bg-opacity-40 text-white p-4">
+                <h2 class="text-4xl font-bold mb-3">Selamat Datang</h2>
+                <p class="text-center text-base leading-relaxed">
+                    Bergabunglah dengan kami untuk menikmati berbagai layanan terbaik. Daftar sekarang dan mulailah
+                    perjalanan Anda!
+                </p>
             </div>
-               
-            
-            <!-- Submit Button -->
-            <button type="submit" 
-                    class="w-full bg-blue-500 text-white py-2 rounded hover:bg-blue-600 transition duration-300">
-                Masuk
-            </button>
-        </form>
-        <!-- Social Login -->
-        <div class="mt-4">
-            <p class="text-gray-400 text-center mt-auto mb-4">or</p>
-            <button class="w-full bg-white text-balack py-2 mb-3 flex items-center justify-center rounded hover:bg-gray-600rounded outline outline-gray-300 transition duration-300">
-                <img src="{{ asset('assets/img/google.png') }}" class="h-5 mr-2"> 
-                Masuk dengan Google
-            </button>
         </div>
     </div>
-    
-    <!-- Script untuk Toggle Password -->
-    <script>
-        function togglePassword(passwordId, closedIconId, openIconId) {
-        const passwordInput = document.getElementById(passwordId);
-        const eyeIconClosed = document.getElementById(closedIconId);
-        const eyeIconOpen = document.getElementById(openIconId);
 
-        if (passwordInput.type === 'password') {
-            passwordInput.type = 'text';
-            eyeIconClosed.style.display = 'none';
-            eyeIconOpen.style.display = 'block';
+    <script>
+    function togglePassword(fieldId, iconId) {
+        const field = document.getElementById(fieldId);
+        const icon = document.getElementById(iconId);
+
+        if (field.type === 'password') {
+            field.type = 'text';
         } else {
-            passwordInput.type = 'password';
-            eyeIconClosed.style.display = 'block';
-            eyeIconOpen.style.display = 'none';
+            field.type = 'password';
         }
     }
-
     </script>
-    
 </body>
+
 </html>
