@@ -185,7 +185,7 @@ class="fixed bottom-6 right-6 bg-red-600 w-12 h-12 text-white rounded-full p-0  
         <div class="relative w-full" style="aspect-ratio: 957/349;">
             <!-- Background Image -->
             <img 
-                src="{{ asset('assets/img/Banner.png') }}" 
+                src="{{ asset('assets/img/landingpage/BannerLandingPage.png') }}" 
                 alt="Banner" 
                 class="absolute top-0 left-0 w-full h-full object-cover">
     
@@ -362,7 +362,7 @@ class="fixed bottom-6 right-6 bg-red-600 w-12 h-12 text-white rounded-full p-0  
                 <div class="swiper-wrapper">
                     <div
                         class="swiper-slide bg-white rounded-lg shadow-lg hover:shadow-xl overflow-hidden transition">
-                        <img src="{{ asset('assets/img/1.png') }}" alt="Gallery Image 1" class="w-full h-48 object-cover">
+                        <img src="{{ asset('assets/img/landingpage/1.png') }}" alt="Gallery Image 1" class="w-full h-48 object-cover">
                         <div class="p-4">
                             <p class="text-gray-600 text-center">Pertunjukan Tari Tradisional di Event Kebudayaan.
                             </p>
@@ -370,7 +370,7 @@ class="fixed bottom-6 right-6 bg-red-600 w-12 h-12 text-white rounded-full p-0  
                     </div>
                     <div
                         class="swiper-slide bg-white rounded-lg shadow-lg hover:shadow-xl overflow-hidden transition">
-                        <img src="{{ asset('assets/img/2.jpg') }}" alt="Gallery Image 2" class="w-full h-48 object-cover">
+                        <img src="{{ asset('assets/img/landingpage/2.jpg') }}" alt="Gallery Image 2" class="w-full h-48 object-cover">
                         <div class="p-4">
                             <p class="text-gray-600 text-center">Workshop Tata Rias dan Kostum untuk Generasi Muda.
                             </p>
@@ -378,14 +378,14 @@ class="fixed bottom-6 right-6 bg-red-600 w-12 h-12 text-white rounded-full p-0  
                     </div>
                     <div
                         class="swiper-slide bg-white rounded-lg shadow-lg hover:shadow-xl overflow-hidden transition">
-                        <img src="{{ asset('assets/img/5.jpg') }}" alt="Gallery Image 3" class="w-full h-48 object-cover">
+                        <img src="{{ asset('assets/img/landingpage/5.jpg') }}" alt="Gallery Image 3" class="w-full h-48 object-cover">
                         <div class="p-4">
                             <p class="text-gray-600 text-center">Latihan Rutin di Sanggar dengan Anggota Baru.</p>
                         </div>
                     </div>
                     <div
                         class="swiper-slide bg-white rounded-lg shadow-lg hover:shadow-xl overflow-hidden transition">
-                        <img src="{{ asset('assets/img/4.jpg') }}" alt="Gallery Image 2" class="w-full h-48 object-cover">
+                        <img src="{{ asset('assets/img/landingpage/4.jpg') }}" alt="Gallery Image 2" class="w-full h-48 object-cover">
                         <div class="p-4">
                             <p class="text-gray-600 text-center">Workshop Tata Rias dan Kostum untuk Generasi Muda.
                             </p>

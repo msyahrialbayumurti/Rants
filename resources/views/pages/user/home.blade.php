@@ -22,7 +22,7 @@
             <!-- Card 1 -->
             <div class="bg-white rounded-lg shadow-lg text-center relative overflow-hidden group">
                 <div class="w-full h-64">
-                    <img src="{{ asset('assets/img/1.png') }}" alt="Gallery Image 1" class="w-full h-full object-cover transform group-hover:scale-110 transition duration-500 ease-in-out">
+                    <img src="{{ asset('assets/img/landingpage/1.png') }}" alt="Gallery Image 1" class="w-full h-full object-cover transform group-hover:scale-110 transition duration-500 ease-in-out">
                 </div>
                 <div class="absolute bottom-0 left-0 right-0 bg-gray-800 bg-opacity-75 text-white py-3 transition-opacity duration-500 group-hover:bg-opacity-90">
                     <p class="text-lg font-medium">Penyewaan Jasa Tari</p>
@@ -31,7 +31,7 @@
             <!-- Card 2 -->
             <div class="bg-white rounded-lg shadow-lg text-center relative overflow-hidden group">
                 <div class="w-full h-64">
-                    <img src="{{ asset('assets/img/4.jpg') }}" alt="Gallery Image 2" class="w-full h-full object-cover transform group-hover:scale-110 transition duration-500 ease-in-out">
+                    <img src="{{ asset('assets/img/landingpage/4.jpg') }}" alt="Gallery Image 2" class="w-full h-full object-cover transform group-hover:scale-110 transition duration-500 ease-in-out">
                 </div>
                 <div class="absolute bottom-0 left-0 right-0 bg-gray-800 bg-opacity-75 text-white py-3 transition-opacity duration-500 group-hover:bg-opacity-90">
                     <p class="text-lg font-medium">MakeUp</p>
@@ -40,7 +40,7 @@
             <!-- Card 3 -->
             <div class="bg-white rounded-lg shadow-lg text-center relative overflow-hidden group">
                 <div class="w-full h-64">
-                    <img src="{{ asset('assets/img/5.jpg') }}" alt="Gallery Image 3" class="w-full h-full object-cover transform group-hover:scale-110 transition duration-500 ease-in-out">
+                    <img src="{{ asset('assets/img/landingpage/5.jpg') }}" alt="Gallery Image 3" class="w-full h-full object-cover transform group-hover:scale-110 transition duration-500 ease-in-out">
                 </div>
                 <div class="absolute bottom-0 left-0 right-0 bg-gray-800 bg-opacity-75 text-white py-3 transition-opacity duration-500 group-hover:bg-opacity-90">
                     <p class="text-lg font-medium">Kostum</p>
@@ -76,7 +76,7 @@
             <!-- Card 1 -->
             <div class="bg-white rounded-lg shadow-md p-4 text-center group hover:shadow-lg transition-shadow duration-300">
                 <div class="relative overflow-hidden rounded-lg">
-                    <img src="{{ asset('assets/img/4.jpg') }}" alt="Gallery Image 2" class="w-full h-48 object-cover transform group-hover:scale-105 transition-transform duration-300">
+                    <img src="{{ asset('assets/img/landingpage/4.jpg') }}" alt="Gallery Image 2" class="w-full h-48 object-cover transform group-hover:scale-105 transition-transform duration-300">
                 </div>
                 <h3 class="font-bold text-lg text-gray-800 mt-4 group-hover:text-indigo-600 transition-colors duration-300">Makeup Soft Glam</h3>
                 <p class="text-gray-600 group-hover:text-gray-800 transition-colors duration-300">Rp 100.000</p>
@@ -84,7 +84,7 @@
             <!-- Card 2 -->
             <div class="bg-white rounded-lg shadow-md p-4 text-center group hover:shadow-lg transition-shadow duration-300">
                 <div class="relative overflow-hidden rounded-lg">
-                    <img src="{{ asset('assets/img/5.jpg') }}" alt="Gallery Image 3" class="w-full h-48 object-cover transform group-hover:scale-105 transition-transform duration-300">
+                    <img src="{{ asset('assets/img/landingpage/5.jpg') }}" alt="Gallery Image 3" class="w-full h-48 object-cover transform group-hover:scale-105 transition-transform duration-300">
                 </div>
                 <h3 class="font-bold text-lg text-gray-800 mt-4 group-hover:text-indigo-600 transition-colors duration-300">Tari Persembahan</h3>
                 <p class="text-gray-600 group-hover:text-gray-800 transition-colors duration-300">Rp 1.500.000</p>
@@ -92,7 +92,7 @@
             <!-- Card 3 -->
             <div class="bg-white rounded-lg shadow-md p-4 text-center group hover:shadow-lg transition-shadow duration-300">
                 <div class="relative overflow-hidden rounded-lg">
-                    <img src="{{ asset('assets/img/1.png') }}" alt="Gallery Image 1" class="w-full h-48 object-cover transform group-hover:scale-105 transition-transform duration-300">
+                    <img src="{{ asset('assets/img/landingpage/1.png') }}" alt="Gallery Image 1" class="w-full h-48 object-cover transform group-hover:scale-105 transition-transform duration-300">
                 </div>
                 <h3 class="font-bold text-lg text-gray-800 mt-4 group-hover:text-indigo-600 transition-colors duration-300">Kostum Tari Persembahan</h3>
                 <p class="text-gray-600 group-hover:text-gray-800 transition-colors duration-300">Rp 600.000</p>
@@ -100,7 +100,7 @@
             <!-- Card 4 -->
             <div class="bg-white rounded-lg shadow-md p-4 text-center group hover:shadow-lg transition-shadow duration-300">
                 <div class="relative overflow-hidden rounded-lg">
-                    <img src="{{ asset('assets/img/2.jpg') }}" alt="Gallery Image 2" class="w-full h-48 object-cover transform group-hover:scale-105 transition-transform duration-300">
+                    <img src="{{ asset('assets/img/landingpage/2.jpg') }}" alt="Gallery Image 2" class="w-full h-48 object-cover transform group-hover:scale-105 transition-transform duration-300">
                 </div>
                 <h3 class="font-bold text-lg text-gray-800 mt-4 group-hover:text-indigo-600 transition-colors duration-300">Tari Kreasi Modern</h3>
                 <p class="text-gray-600 group-hover:text-gray-800 transition-colors duration-300">Rp 1.500.000</p>
