@@ -1,15 +1,31 @@
 <?php
 
+
+use App\Http\Controllers\Auth\AuthenticatedSessionController;
+use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\User\HomeController;
 
-
-// Route untuk halaman utama
 Route::get('/', function () {
     return view('welcome');
 })->name('index');
+
+Route::post('/login', [AuthenticatedSessionController::class, 'store'])->name('login');
+
+
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
+
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+});
+
+
 
 Route::get('/kontak', [HomeController::class, 'showKontak'])->name('kontak');
 
@@ -22,19 +38,9 @@ Route::get('/tentang-kami', [HomeController::class, 'showAboutme'])->name('tenta
 Route::get('/riwayat', [HomeController::class, 'showRiwayat'])->name('riwayat');
 
 Route::get('/profil', [HomeController::class, 'showProfil'])->name('profil');
+
 Route::get('/notifikasi', [HomeController::class, 'showNotifikasi'])->name('notifikasi');
 
 
-// Route untuk halaman login
-Route::get('/login', [AuthController::class, 'showLogin'])->name('login');
 
-// Route untuk halaman register
-Route::get('/register', [RegisterController::class, 'showRegister'])->name('register');
-
-// Route untuk proses register
-Route::post('/post-register', [AuthController::class, 'post_register'])->name('post.register');
-
-// Route untuk proses login
-Route::post('/post-login', [AuthController::class, 'login'])->name('post.login');
-
-Route::get('/password/reset', [AuthController::class, 'showResetPassword'])->name('password.request');
+require __DIR__.'/auth.php';
