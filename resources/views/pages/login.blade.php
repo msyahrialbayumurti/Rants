@@ -49,7 +49,7 @@
                 <div class="mb-6">
                     <label for="password" class="block text-gray-700 text-sm font-medium mb-2">Password</label>
                     <div class="relative">
-                        <input id="password" type="password" name="password" required placeholder=""
+                        <input id="password" type="password" name="password" required placeholder="password"
                             class="w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-orange-500">
                         <button type="button" onclick="togglePassword()"
                             class="absolute inset-y-0 right-0 px-3 text-gray-500 hover:text-orange-500">

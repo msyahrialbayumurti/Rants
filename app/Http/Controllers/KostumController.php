@@ -9,6 +9,19 @@ use App\Http\Controllers\Controller;
 
 class KostumController extends Controller
 {
+    public function indexx()
+    {
+        $kostum = Kostum::all();
+        return view('pages.user.layanan', compact('kostum'));
+    }
+
+    public function showKostum($id)
+    {
+        $kostum = kostum::findOrFail($id);
+        return view('pages.user.layanan', compact('kostum'));
+    }
+
+
     // Mendapatkan semua data kostum
     public function index()
     {

@@ -66,8 +66,8 @@
                             class="w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-orange-500">
                         <button type="button" onclick="togglePassword('password', 'password-icon')"
                             class="absolute inset-y-0 right-2 px-2 text-gray-500 hover:text-orange-500">
-                            <svg id="password-icon" xmlns="http://www.w3.org/2000/svg" fill="none"
-                                viewBox="0 0 24 24" stroke="currentColor" class="h-5 w-5">
+                            <svg id="password-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                stroke="currentColor" class="h-5 w-5">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                     d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -128,6 +128,7 @@
                 field.type = 'password';
             }
         }
+    }
     </script>
 </body>
 

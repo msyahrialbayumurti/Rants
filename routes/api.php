@@ -31,6 +31,7 @@ Route::middleware('auth:sanctum')->post('/payment/createTransaction', [PaymentCo
 Route::middleware('auth:sanctum')->post('/payment/makeup/succes', [PaymentController::class, 'verifyPaymentMakeup']);
 // 2. Jadwal Acara
 Route::get('/acara/{tanggal}', [CalendarController::class, 'schedule']);
+Route::get('/acara', [CalendarController::class, 'getAllCalenders']);
 
 // 3. Gallery
 Route::get('/galleries', [GalleryController::class, 'index']);
