@@ -6,6 +6,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Event;
 
 class User extends Authenticatable
 {
@@ -67,4 +68,10 @@ class User extends Authenticatable
 
         return url('storage/images/default.png'); // Default image
     }
+    public function layanan()
+{
+    $events = Event::all(); // Atau query untuk mendapatkan data event
+    return view('pages.user.layanan', compact('events'));
+}
+
 }

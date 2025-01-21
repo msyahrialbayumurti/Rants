@@ -6,6 +6,10 @@ use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\KostumController;
 use App\Http\Controllers\User\HomeController;
 use App\Http\Controllers\CalendarController;
+use App\Http\Controllers\MakeUpController;
+use App\Http\Controllers\PenyewaanJasaTariController;
+use App\Http\Controllers\ProductController;
+
 
 
 // Route untuk halaman utama
@@ -50,4 +54,27 @@ Route::get('/layanan', [HomeController::class, 'showlayanan'])->name('layanan');
 
 Route::get('/layanan/acara/{tanggal}', [CalendarController::class, 'schedule']);
 
-Route::get('/event-details', [CalendarController::class, 'getEventDetails']);
+Route::get('/event-details', [CalendarController::class, 'getEventDetails']);Route::get('/layanan', [CalendarController::class, 'index'])->name('layanan');
+
+Route::get('/api/calendar-events', [CalendarController::class, 'getCalendarEvents']);
+
+Route::get('/api/produk/{layanan}', [ProductController::class, 'getProduk']);
+
+// // Route untuk layanan kostum
+// Route::get('/api/produk/kostum', [KostumController::class, 'getKostumProduk']);
+
+// // Route untuk kostum
+// Route::get('/produk/kostum', [KostumController::class, 'getKostum']);
+
+// // Route untuk makeup
+// Route::get('/produk/makeup', [MakeUpController::class, 'getMakeUp']);
+
+
+// Route untuk mendapatkan data kostum
+Route::get('/produk/kostum', [KostumController::class, 'index']);
+
+// Route untuk mendapatkan data makeup
+Route::get('/produk/makeup', [MakeUpController::class, 'index']);
+
+// Route untuk mendapatkan data jasa tari
+Route::get('/produk/jasa-tari', [PenyewaanJasaTariController::class, 'index']);
