@@ -70,4 +70,9 @@ class HomeController extends Controller
             return $e->getMessage(); // Menampilkan error jika ada
         }
     }
+
+    public function showDescription()
+    {
+        
+    }
 }

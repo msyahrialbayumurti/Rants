@@ -2,46 +2,28 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Kostum;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 
 class ProductController extends Controller
 {
     /**
-     * Mengambil produk berdasarkan layanan.
+     * Menampilkan detail produk dari tabel Kostum berdasarkan ID.
      *
-     * @param string $layanan
-     * @return \Illuminate\Http\JsonResponse
+     * @param int $id
+     * @return \Illuminate\View\View|\Illuminate\Http\Response
      */
-    public function getProduk($layanan)
+    public function detail($id)
     {
-        // Validasi parameter layanan
-        $validServices = ['kostum', 'makeup', 'jasa-tari'];
+        // Cari produk berdasarkan ID
+        $produk = Kostum::find($id);
 
-        if (!in_array($layanan, $validServices)) {
-            return response()->json(['message' => 'Layanan tidak valid.'], 400);
+        // Jika produk tidak ditemukan, tampilkan error 404
+        if (!$produk) {
+            abort(404, 'Produk tidak ditemukan.');
         }
 
-        // Query berdasarkan layanan
-        if ($layanan === 'kostum') {
-            $produk = DB::table('kostum')
-                ->select('nama_kostum as name', 'image', 'jumlah', 'warna', 'ukuran', 'harga')
-                ->get();
-        } elseif ($layanan === 'makeup') {
-            $produk = DB::table('make_ups')
-                ->select('Kategori as name', 'image', 'harga')
-                ->get();
-        } elseif ($layanan === 'jasa-tari') {
-            $produk = DB::table('penyewaan_jasa_taris')
-                ->select('jenis_tarian as name', 'image', 'jumlah_penari', 'harga')
-                ->get();
-        }
-
-        // Cek apakah produk kosong
-        if ($produk->isEmpty()) {
-            return response()->json(['message' => 'Tidak ada produk yang tersedia.'], 200);
-        }
-
-        return response()->json($produk, 200);
+        // Tampilkan view dengan data produk
+        return view('pages.user.detail', compact('produk'));
     }
 }

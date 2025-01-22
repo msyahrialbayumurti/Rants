@@ -337,7 +337,7 @@
 
 
     <!-- Notification Modal -->
-    <div id="notification-modal" class="modal">
+    {{-- <div id="notification-modal" class="modal">
         <div class="modal-content">
             <div class="modal-header">
                 <h2>Notifikasi</h2>
@@ -354,7 +354,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> --}}
 
 
 
@@ -453,10 +453,11 @@
 
                     <!-- Action Buttons -->
                     <div class="mt-6 flex gap-4">
-                        <button
-                            class="px-6 py-2 bg-blue-600 text-white text-sm font-medium rounded-lg shadow-md hover:bg-blue-700 transition flex items-center gap-2">
-                            <i class="fas fa-edit"></i> Edit Profil
-                        </button>
+                        <a href="{{ route('profile.edit') }}"
+                        class="px-6 py-2 bg-blue-600 text-white text-sm font-medium rounded-lg shadow-md hover:bg-blue-700 transition flex items-center gap-2">
+                        <i class="fas fa-edit"></i> Edit Profil
+                    </a>
+
                         <button
                             class="px-6 py-2 bg-red-600 text-white text-sm font-medium rounded-lg shadow-md hover:bg-red-700 transition flex items-center gap-2">
                             <i class="fas fa-sign-out-alt"></i> Logout

@@ -460,7 +460,7 @@
             <!-- Container untuk Banner -->
             <div class="relative w-full" style="aspect-ratio: 957/349;">
                 <!-- Background Image -->
-                <img src="{{ asset('assets/img/Banner.png') }}" alt="Banner"
+                <img src="{{ asset('assets/img/landingpage/BannerLandingPage.png') }}" alt="Banner"
                     class="absolute top-0 left-0 w-full h-full object-cover">
 
                 <!-- Tombol Selengkapnya -->
@@ -792,7 +792,7 @@
         },
     });
     </script>
-        
+
 
     <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
     <script>

@@ -81,4 +81,6 @@ class MakeUpController extends Controller
 
         return response()->json(['message' => 'Makeup berhasil dihapus'], 200);
     }
+
+    
 }
