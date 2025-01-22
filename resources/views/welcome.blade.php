@@ -267,7 +267,7 @@
                 </div>
 
                 <!-- Notifikasi dan Login/Logout (Kanan) -->
-                <div class="flex items-center space-x-4">
+                {{-- <div class="flex items-center space-x-4">
                     @auth
                     <!-- Notification Icon -->
                     <button id="notification-button" class="relative notification-button">
@@ -290,7 +290,7 @@
                         class="block px-4 py-2 text-white rounded-md hover:bg-blue-600 transition duration-300"
                         style="background: linear-gradient(180deg, hsla(57, 99%, 50%, 1) 0%, hsla(9, 100%, 51%, 1) 100%); max-width: 200px;">Login</a>
                     @endauth
-                </div>
+                </div> --}}
             </div>
 
 
@@ -328,7 +328,7 @@
                 class="{{ Route::is('profil') ? 'text-red-700 py-2 px-3' : 'text-gray-500' }} hover:text-red-700 transition duration-300 block py-2 px-3">Profil</a>
             @endauth
 
-            <!-- Login/Logout Button in Center -->
+            {{-- <!-- Login/Logout Button in Center -->
             <div class="mt-6 text-center">
                 @auth
                 <a href="{{ route('logout') }}"
@@ -339,7 +339,7 @@
                     class="inline-block px-4 py-2 text-white text-sm rounded-md hover:bg-blue-600 transition duration-300"
                     style="background: linear-gradient(180deg, hsla(57, 99%, 50%, 1) 0%, hsla(9, 100%, 51%, 1) 100%);">Login</a>
                 @endauth
-            </div>
+            </div> --}}
         </div>
 
 
@@ -670,7 +670,8 @@
 
 
     <!-- Contact Info -->
-    <footer class="bg-red-800 text-white py-12 mt-10">
+    <footer class="bg-red-800 text-white py-12 mt-10"
+        style="background-image: url('/assets/img/landingpage/jpg25.svg'); background-size: cover; background-position: center;">
         <div class="max-w-7xl mx-auto px-6 lg:px-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
             <!-- Logo and Description -->
             <div>
