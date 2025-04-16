@@ -281,9 +281,19 @@
                     </button>
 
                     <!-- Logout Button -->
-                    <a href="{{ route('logout') }}"
+                    <a href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
+                        class="text-red-600 hover:underline">
+                        Logout
+                    </a>
+
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="hidden">
+                        @csrf
+                    </form>
+
+
+                    <!-- <a href="{{ route('logout') }}"
                         class="block px-4 py-2 text-white rounded-md hover:bg-red-600 transition duration-300"
-                        style="background: linear-gradient(180deg, hsla(57, 99%, 50%, 1) 0%, hsla(9, 100%, 51%, 1) 100%); max-width: 200px;">Logout</a>
+                        style="background: linear-gradient(180deg, hsla(57, 99%, 50%, 1) 0%, hsla(9, 100%, 51%, 1) 100%); max-width: 200px;">Logout</a> -->
                     @else
                     <!-- Login Button -->
                     {{-- <a href="{{ route('login') }}"
@@ -708,7 +718,7 @@
             <div>
                 <h4 class="text-lg font-semibold border-b-2 border-red-400 pb-2">Lebih Lanjut</h4>
                 <ul class="mt-4 space-y-2 text-gray-300">
-                    <li><a href="#" class="hover:text-white transition">Home</a></li>
+                    <li><a href="#" class="hover:text-white transition">Dashboard</a></li>
                     {{-- <li><a href="#" class="hover:text-white transition">Service</a></li>
                         <li><a href="#" class="hover:text-white transition">FAQ's</a></li> --}}
                     <li><a href="#" class="hover:text-white transition">Contact</a></li>

@@ -1,4 +1,5 @@
 import './bootstrap';
+<<<<<<< HEAD
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 
@@ -24,3 +25,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
     calendar.render();
 });
+=======
+
+import Alpine from 'alpinejs';
+
+window.Alpine = Alpine;
+
+Alpine.start();
+>>>>>>> d92e0a15569a4e041b04dc1430b1fa94e9c4c12c
