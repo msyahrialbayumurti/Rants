@@ -403,9 +403,9 @@
 
                     @else
                     <!-- Login Button -->
-                    <a href="{{ route('login') }}"
+                    {{-- <a href="{{ route('login') }}"
                         class="block px-4 py-2 text-white rounded-md hover:bg-blue-600 transition duration-300"
-                        style="background: linear-gradient(180deg, hsla(57, 99%, 50%, 1) 0%, hsla(9, 100%, 51%, 1) 100%); max-width: 200px;">Login</a>
+                        style="background: linear-gradient(180deg, hsla(57, 99%, 50%, 1) 0%, hsla(9, 100%, 51%, 1) 100%); max-width: 200px;">Login</a> --}}
                     @endauth
                 </div>
             </div>
@@ -454,9 +454,9 @@
                 <a href="{{ route('profil') }}"
                     class="{{ Route::is('profil') ? 'text-red-700 py-2 px-3' : 'text-gray-500' }} hover:text-red-700 transition duration-300 block py-2 px-3">Profil</a>
                 @else
-                <a href="{{ route('login') }}"
+                {{-- <a href="{{ route('login') }}"
                     class="block px-4 py-2 text-white rounded-md hover:bg-blue-600 transition duration-300"
-                    style="background: linear-gradient(180deg, hsla(57, 99%, 50%, 1) 0%, hsla(9, 100%, 51%, 1) 100%); max-width: 200px;">Login</a>
+                    style="background: linear-gradient(180deg, hsla(57, 99%, 50%, 1) 0%, hsla(9, 100%, 51%, 1) 100%); max-width: 200px;">Login</a> --}}
                 @endauth
             </div>
         </div>
@@ -507,6 +507,8 @@
             <div class="lg:col-span-2">
                 <div class="bg-white shadow-lg rounded-lg p-6">
                     <h2 class="text-xl font-bold text-gray-800 mb-4">Daftar Layanan</h2>
+                    <p class="text-gray-500 mt-2 text-lg">Klik Layanan Untuk Melihat Produk</p>
+
                     <div class="grid grid-cols-1 gap-4">
                         <!-- Layanan Jasa Tari -->
                         <div class="service-card bg-blue-50 border-l-4 border-blue-500 p-6 rounded-lg cursor-pointer transition-transform hover:scale-105 hover:shadow-md"
@@ -675,18 +677,18 @@ document.addEventListener('DOMContentLoaded', function () {
                         if (data.data && data.data.length > 0) {
                             data.data.forEach(item => {
                                 const imageUrl = `/storage/${item.image || 'default-image.jpg'}`;
-//button pesan
-produkLists[layanan].innerHTML += `
-    <div class="bg-white shadow rounded p-4">
-        <img src="${imageUrl}" alt="${item.name || 'Produk Tidak Diketahui'}" class="w-full h-40 object-cover rounded mb-2">
-        <h3 class="font-bold text-lg">${item.name || 'Produk Tidak Diketahui'}</h3>
-        <p>Harga: Rp ${item.harga || 'Tidak Tersedia'}</p>
-        <a href="/produk/${layanan}/detail/${item.id}" class="order-button bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg">
-            Pesan
-        </a>
-    </div>
-`;
-
+                                produkLists[layanan].innerHTML += `
+                                    <div class="bg-white shadow rounded p-4">
+                                        <img src="${imageUrl}" alt="${item.name || item.nama_kostum || item.Kategory || item.jenis_tarian || 'Produk Tidak Diketahui'}" class="w-full h-40 object-cover rounded mb-2">
+                                        <h3 class="font-bold text-lg">${item.name || item.nama_kostum || item.Kategory || item.jenis_tarian || 'Produk Tidak Diketahui'}</h3>
+                                        ${item.jumlah ? `<p>Jumlah: ${item.jumlah}</p>` : ''}
+                                        ${item.warna ? `<p>Warna: ${item.warna}</p>` : ''}
+                                        ${item.ukuran ? `<p>Ukuran: ${item.ukuran}</p>` : ''}
+                                        ${item.jumlah_penari ? `<p>Jumlah Penari: ${item.jumlah_penari}</p>` : ''}
+                                        ${item.deskripsi_acara ? `<p>Deskripsi Acara: ${item.deskripsi_acara}</p>` : ''}
+                                        <p>Harga: Rp ${item.harga || 'Tidak Tersedia'}</p>
+                                    </div>
+                                `;
                             });
                         } else {
                             produkLists[layanan].innerHTML = '<p class="text-gray-500 italic">Tidak ada produk untuk layanan ini.</p>';
@@ -788,44 +790,42 @@ produkLists[layanan].innerHTML += `
     });
 </script>
 <script>
-   document.addEventListener('DOMContentLoaded', function () {
-    const orderModal = document.getElementById('order-modal'); // Referensi modal
-    const closeModal = document.getElementById('close-order-modal'); // Tombol tutup modal
-    const cancelOrder = document.getElementById('cancel-order'); // Tombol batal
+    document.addEventListener('DOMContentLoaded', function () {
+        const orderModal = document.getElementById('order-modal');
+        const closeModal = document.getElementById('close-order-modal');
+        const cancelOrder = document.getElementById('cancel-order');
+        const orderForm = document.getElementById('order-form');
 
-    // Event listener untuk tombol "Pesan"
-    document.addEventListener('click', function (e) {
-        if (e.target && e.target.classList.contains('order-button')) {
-            // Ambil data dari tombol yang diklik
-            const productName = e.target.getAttribute('data-name');
-            const productId = e.target.getAttribute('data-id');
+        // Event listener untuk tombol "Pesan"
+        document.addEventListener('click', function (e) {
+            if (e.target && e.target.classList.contains('order-button')) {
+                // Ambil data produk dari elemen yang diklik
+                const productCard = e.target.closest('.bg-white');
+                const productName = productCard.querySelector('h3').innerText;
+                const productId = e.target.getAttribute('data-id');
 
-            // Isi form modal dengan data produk
-            document.getElementById('product-name').value = productName;
-            document.getElementById('product-id').value = productId;
+                // Isi form modal
+                document.getElementById('product-name').value = productName;
+                document.getElementById('product-id').value = productId;
 
-            // Tampilkan modal
-            orderModal.classList.remove('hidden');
-        }
-    });
+                // Tampilkan modal
+                orderModal.classList.remove('hidden');
+            }
+        });
 
-    // Event listener untuk tombol close modal
-    closeModal.addEventListener('click', function () {
-        orderModal.classList.add('hidden');
-    });
-
-    // Event listener untuk tombol batal
-    cancelOrder.addEventListener('click', function () {
-        orderModal.classList.add('hidden');
-    });
-
-    // Event listener untuk klik di luar modal
-    window.addEventListener('click', function (e) {
-        if (e.target === orderModal) {
+        // Event listener untuk tombol close modal
+        closeModal.addEventListener('click', function () {
             orderModal.classList.add('hidden');
-        }
-    });
-});
+        });
+
+        // Event listener untuk tombol batal
+        cancelOrder.addEventListener('click', function () {
+            orderModal.classList.add('hidden');
+        });
+
+        // Event listener untuk submit form pemesanan
+        orderForm.addEventListener('submit', function (e) {
+            e.preventDefault();
 
             // Ambil data dari form
             const productId = document.getElementById('product-id').value;
@@ -861,8 +861,8 @@ produkLists[layanan].innerHTML += `
                 console.error('Error:', error);
                 alert('Terjadi kesalahan saat memproses pembayaran.');
             });
-
-
+        });
+    });
     </script>
 
 </body>
